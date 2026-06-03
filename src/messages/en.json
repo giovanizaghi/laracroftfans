@@ -2,5 +2,79 @@
   "project": {
     "name": "Lara Croft Fans",
     "description": "Fan-made Tomb Raider portal"
+  },
+  "comingSoon": {
+    "hero": {
+      "kicker": "Coming Soon",
+      "subtitle": "A new Tomb Raider fan experience is being unearthed.",
+      "instagram": "Instagram",
+      "youtube": "YouTube"
+    },
+    "entrance": {
+      "eyebrow": "Tomb Entrance",
+      "title": "The sealed chamber is opening",
+      "description": "Beyond the stone arch, the first expedition notes point toward archives, artifacts, secret paths, and a fan-made home for Tomb Raider history."
+    },
+    "discovery": {
+      "title": "Discover what awaits inside",
+      "cards": [
+        "Games Archive",
+        "Character Encyclopedia",
+        "Timeline",
+        "Guides",
+        "Secrets",
+        "Artifacts",
+        "Collectibles",
+        "Art Galleries",
+        "Wallpapers",
+        "Community"
+      ]
+    },
+    "map": {
+      "eyebrow": "Ancient Map",
+      "title": "An archaeological map of what comes next",
+      "subtitle": "Future sections will unfold like expedition routes, each one prepared for deeper Tomb Raider content.",
+      "categories": [
+        {
+          "title": "Research Notes",
+          "description": "Articles, lore references, and editorial discoveries."
+        },
+        {
+          "title": "Expedition Routes",
+          "description": "Guides, walkthroughs, secrets, and collectibles."
+        },
+        {
+          "title": "Artifact Vault",
+          "description": "Games, characters, timelines, and preserved media."
+        },
+        {
+          "title": "Campfire Circle",
+          "description": "Community highlights, social channels, and fan projects."
+        }
+      ]
+    },
+    "timeline": {
+      "title": "Future games hall",
+      "games": [
+        "Tomb Raider (1996)",
+        "Tomb Raider II",
+        "Tomb Raider III",
+        "The Last Revelation",
+        "Chronicles",
+        "Angel of Darkness",
+        "Legend",
+        "Anniversary",
+        "Underworld",
+        "Tomb Raider (2013)",
+        "Rise of the Tomb Raider",
+        "Shadow of the Tomb Raider",
+        "Remastered Collection"
+      ]
+    },
+    "footer": {
+      "languagePlaceholder": "Language selector",
+      "disclaimer": "Fan project disclaimer: Lara Croft Fans is an unofficial fan-made project and is not affiliated with Crystal Dynamics, Embracer Group, or the Tomb Raider rights holders.",
+      "copyright": "© 2026 Lara Croft Fans. Fan-made project."
+    }
   }
 }

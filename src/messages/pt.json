@@ -2,5 +2,79 @@
   "project": {
     "name": "Lara Croft Fans",
     "description": "Portal de fãs de Tomb Raider"
+  },
+  "comingSoon": {
+    "hero": {
+      "kicker": "Em breve",
+      "subtitle": "Uma nova experiência para fãs de Tomb Raider está sendo desenterrada.",
+      "instagram": "Instagram",
+      "youtube": "YouTube"
+    },
+    "entrance": {
+      "eyebrow": "Entrada da Tumba",
+      "title": "A câmara selada está se abrindo",
+      "description": "Além do arco de pedra, as primeiras notas da expedição apontam para arquivos, artefatos, caminhos secretos e uma casa feita por fãs para a história de Tomb Raider."
+    },
+    "discovery": {
+      "title": "Descubra o que espera lá dentro",
+      "cards": [
+        "Arquivo de Jogos",
+        "Enciclopédia de Personagens",
+        "Linha do Tempo",
+        "Guias",
+        "Segredos",
+        "Artefatos",
+        "Colecionáveis",
+        "Galerias de Arte",
+        "Wallpapers",
+        "Comunidade"
+      ]
+    },
+    "map": {
+      "eyebrow": "Mapa Antigo",
+      "title": "Um mapa arqueológico do que vem a seguir",
+      "subtitle": "As próximas seções serão reveladas como rotas de expedição, cada uma preparada para conteúdo mais profundo sobre Tomb Raider.",
+      "categories": [
+        {
+          "title": "Notas de Pesquisa",
+          "description": "Artigos, referências de lore e descobertas editoriais."
+        },
+        {
+          "title": "Rotas de Expedição",
+          "description": "Guias, detonados, segredos e colecionáveis."
+        },
+        {
+          "title": "Cofre de Artefatos",
+          "description": "Jogos, personagens, linhas do tempo e mídia preservada."
+        },
+        {
+          "title": "Círculo do Acampamento",
+          "description": "Destaques da comunidade, redes sociais e projetos de fãs."
+        }
+      ]
+    },
+    "timeline": {
+      "title": "Futuro salão dos jogos",
+      "games": [
+        "Tomb Raider (1996)",
+        "Tomb Raider II",
+        "Tomb Raider III",
+        "The Last Revelation",
+        "Chronicles",
+        "Angel of Darkness",
+        "Legend",
+        "Anniversary",
+        "Underworld",
+        "Tomb Raider (2013)",
+        "Rise of the Tomb Raider",
+        "Shadow of the Tomb Raider",
+        "Remastered Collection"
+      ]
+    },
+    "footer": {
+      "languagePlaceholder": "Seletor de idioma",
+      "disclaimer": "Aviso de projeto de fãs: Lara Croft Fans é um projeto não oficial feito por fãs e não é afiliado à Crystal Dynamics, Embracer Group ou aos detentores dos direitos de Tomb Raider.",
+      "copyright": "© 2026 Lara Croft Fans. Projeto feito por fãs."
+    }
   }
 }
