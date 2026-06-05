@@ -1,12 +1,48 @@
 {
   "project": {
     "name": "Lara Croft Fans",
-    "description": "Portal de fãs de Tomb Raider"
+    "description": "O arquivo definitivo para fãs de Tomb Raider"
   },
   "comingSoon": {
+    "navigation": {
+      "ariaLabel": "Caminhos da tumba",
+      "menuOpen": "Abrir menu relíquia",
+      "menuClose": "Fechar menu relíquia",
+      "items": [
+        {
+          "id": "home",
+          "label": "Início"
+        },
+        {
+          "id": "games",
+          "label": "Jogos"
+        },
+        {
+          "id": "timeline",
+          "label": "Linha do tempo"
+        },
+        {
+          "id": "media",
+          "label": "Mídia"
+        },
+        {
+          "id": "community",
+          "label": "Comunidade"
+        },
+        {
+          "id": "about",
+          "label": "Sobre"
+        }
+      ]
+    },
+    "language": {
+      "ariaLabel": "Seletor de idioma",
+      "english": "EN",
+      "portuguese": "PT"
+    },
     "hero": {
       "kicker": "Em breve",
-      "subtitle": "Uma nova experiência para fãs de Tomb Raider está sendo desenterrada.",
+      "subtitle": "O arquivo definitivo para fãs de Tomb Raider",
       "instagram": "Instagram",
       "youtube": "YouTube"
     },
@@ -18,16 +54,46 @@
     "discovery": {
       "title": "Descubra o que espera lá dentro",
       "cards": [
-        "Arquivo de Jogos",
-        "Enciclopédia de Personagens",
-        "Linha do Tempo",
-        "Guias",
-        "Segredos",
-        "Artefatos",
-        "Colecionáveis",
-        "Galerias de Arte",
-        "Wallpapers",
-        "Comunidade"
+        {
+          "id": "games",
+          "title": "Arquivo de Jogos"
+        },
+        {
+          "id": "characters",
+          "title": "Enciclopédia de Personagens"
+        },
+        {
+          "id": "lore",
+          "title": "Linha do Tempo da Lore"
+        },
+        {
+          "id": "guides",
+          "title": "Guias"
+        },
+        {
+          "id": "secrets",
+          "title": "Segredos"
+        },
+        {
+          "id": "artifacts",
+          "title": "Artefatos"
+        },
+        {
+          "id": "collectibles",
+          "title": "Colecionáveis"
+        },
+        {
+          "id": "galleries",
+          "title": "Galerias de Arte"
+        },
+        {
+          "id": "wallpapers",
+          "title": "Wallpapers"
+        },
+        {
+          "id": "fan-projects",
+          "title": "Projetos de Fãs"
+        }
       ]
     },
     "map": {
@@ -72,8 +138,8 @@
       ]
     },
     "footer": {
-      "languagePlaceholder": "Seletor de idioma",
-      "disclaimer": "Aviso de projeto de fãs: Lara Croft Fans é um projeto não oficial feito por fãs e não é afiliado à Crystal Dynamics, Embracer Group ou aos detentores dos direitos de Tomb Raider.",
+      "navigationLabel": "Navegação do acampamento de expedição",
+      "disclaimer": "Site de fãs não oficial. Tomb Raider e Lara Croft pertencem aos seus respectivos proprietários.",
       "copyright": "© 2026 Lara Croft Fans. Projeto feito por fãs."
     }
   }

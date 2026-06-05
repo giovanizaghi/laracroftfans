@@ -1,16 +1,21 @@
 type TombEntranceProps = {
+  id?: string;
   eyebrow: string;
   title: string;
   description: string;
 };
 
 export function TombEntrance({
+  id,
   eyebrow,
   title,
   description
 }: TombEntranceProps) {
   return (
-    <section className="relative overflow-hidden bg-[#090705] px-5 py-20 text-stone-100 sm:px-8 lg:px-10">
+    <section
+      className="relative scroll-mt-28 overflow-hidden bg-[#090705] px-5 py-20 text-stone-100 sm:px-8 lg:px-10"
+      id={id}
+    >
       <div aria-hidden="true" className="tomb-passage-light" />
       <div className="relative mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.95fr_1.05fr] md:items-center">
         <div className="stone-arch" aria-hidden="true">

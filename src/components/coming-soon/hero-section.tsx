@@ -107,8 +107,9 @@ export function HeroSection({
 
   return (
     <section
+      id="home"
       ref={sectionRef}
-      className="relative isolate flex min-h-screen overflow-hidden bg-stone-950 text-stone-100"
+      className="relative isolate flex min-h-screen scroll-mt-28 overflow-hidden bg-stone-950 text-stone-100"
       onMouseMove={handleMouseMove}
     >
       <ParallaxBackground x={backgroundX} y={backgroundY} />
@@ -117,13 +118,26 @@ export function HeroSection({
       <div className="relative z-20 mx-auto flex w-full max-w-7xl flex-col justify-center gap-10 px-5 py-24 sm:px-8 md:grid md:grid-cols-[1fr_auto] md:items-center md:gap-12 lg:px-10">
         <motion.div
           className="mx-auto max-w-3xl text-center md:mx-0 md:justify-self-center"
+          initial={prefersReducedMotion ? false : { opacity: 0 }}
+          animate={prefersReducedMotion ? undefined : { opacity: 1 }}
+          transition={{ duration: 0.56, ease: [0.22, 1, 0.36, 1] }}
           style={{ x: contentX, y: contentY }}
         >
           <motion.div style={{ y: contentMouseY }}>
-            <p className="mb-5 text-xs font-semibold uppercase text-amber-200/80 sm:text-sm">
+            <motion.p
+              className="mb-5 text-xs font-semibold uppercase text-amber-200/80 sm:text-sm"
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.38, delay: 0.12 }}
+            >
               {kicker}
-            </p>
-            <h1 className="mx-auto w-full max-w-[22rem] drop-shadow-[0_12px_34px_rgba(0,0,0,0.85)] sm:max-w-[30rem] md:max-w-[36rem]">
+            </motion.p>
+            <motion.h1
+              className="mx-auto w-full max-w-[22rem] drop-shadow-[0_12px_34px_rgba(0,0,0,0.85)] sm:max-w-[30rem] md:max-w-[36rem]"
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 14 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.46, delay: 0.2 }}
+            >
               <Image
                 src="/images/lara-croft-fans-logo.png"
                 alt="Lara Croft Fans"
@@ -133,11 +147,21 @@ export function HeroSection({
                 sizes="(min-width: 768px) 36rem, (min-width: 640px) 30rem, 22rem"
                 className="h-auto w-full"
               />
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-stone-200 sm:text-lg md:text-xl">
+            </motion.h1>
+            <motion.p
+              className="mx-auto mt-6 max-w-2xl text-base leading-8 text-stone-200 sm:text-lg md:text-xl"
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.42, delay: 0.3 }}
+            >
               {subtitle}
-            </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            </motion.p>
+            <motion.div
+              className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.42, delay: 0.38 }}
+            >
               <a
                 className={cn(
                   buttonVariants({ variant: "primary" }),
@@ -164,7 +188,7 @@ export function HeroSection({
                 <Youtube className="h-4 w-4" aria-hidden="true" />
                 {youtubeLabel}
               </a>
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
 

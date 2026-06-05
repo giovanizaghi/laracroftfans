@@ -1,11 +1,15 @@
 type GamesTimelineProps = {
+  id?: string;
   title: string;
   games: string[];
 };
 
-export function GamesTimeline({ title, games }: GamesTimelineProps) {
+export function GamesTimeline({ id, title, games }: GamesTimelineProps) {
   return (
-    <section className="relative bg-[#100d09] px-5 py-20 text-stone-100 sm:px-8 lg:px-10">
+    <section
+      className="relative scroll-mt-28 bg-[#100d09] px-5 py-20 text-stone-100 sm:px-8 lg:px-10"
+      id={id}
+    >
       <div className="mx-auto max-w-7xl">
         <h2 className="max-w-3xl text-3xl font-black uppercase text-amber-50 sm:text-4xl">
           {title}

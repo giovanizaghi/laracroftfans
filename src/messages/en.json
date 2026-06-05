@@ -1,12 +1,48 @@
 {
   "project": {
     "name": "Lara Croft Fans",
-    "description": "Fan-made Tomb Raider portal"
+    "description": "The ultimate Tomb Raider fan archive"
   },
   "comingSoon": {
+    "navigation": {
+      "ariaLabel": "Tomb paths",
+      "menuOpen": "Open relic menu",
+      "menuClose": "Close relic menu",
+      "items": [
+        {
+          "id": "home",
+          "label": "Home"
+        },
+        {
+          "id": "games",
+          "label": "Games"
+        },
+        {
+          "id": "timeline",
+          "label": "Timeline"
+        },
+        {
+          "id": "media",
+          "label": "Media"
+        },
+        {
+          "id": "community",
+          "label": "Community"
+        },
+        {
+          "id": "about",
+          "label": "About"
+        }
+      ]
+    },
+    "language": {
+      "ariaLabel": "Language switcher",
+      "english": "EN",
+      "portuguese": "PT"
+    },
     "hero": {
       "kicker": "Coming Soon",
-      "subtitle": "A new Tomb Raider fan experience is being unearthed.",
+      "subtitle": "The ultimate Tomb Raider fan archive",
       "instagram": "Instagram",
       "youtube": "YouTube"
     },
@@ -18,16 +54,46 @@
     "discovery": {
       "title": "Discover what awaits inside",
       "cards": [
-        "Games Archive",
-        "Character Encyclopedia",
-        "Timeline",
-        "Guides",
-        "Secrets",
-        "Artifacts",
-        "Collectibles",
-        "Art Galleries",
-        "Wallpapers",
-        "Community"
+        {
+          "id": "games",
+          "title": "Games Archive"
+        },
+        {
+          "id": "characters",
+          "title": "Character Encyclopedia"
+        },
+        {
+          "id": "lore",
+          "title": "Lore Timeline"
+        },
+        {
+          "id": "guides",
+          "title": "Guides"
+        },
+        {
+          "id": "secrets",
+          "title": "Secrets"
+        },
+        {
+          "id": "artifacts",
+          "title": "Artifacts"
+        },
+        {
+          "id": "collectibles",
+          "title": "Collectibles"
+        },
+        {
+          "id": "galleries",
+          "title": "Art Galleries"
+        },
+        {
+          "id": "wallpapers",
+          "title": "Wallpapers"
+        },
+        {
+          "id": "fan-projects",
+          "title": "Fan Projects"
+        }
       ]
     },
     "map": {
@@ -72,8 +138,8 @@
       ]
     },
     "footer": {
-      "languagePlaceholder": "Language selector",
-      "disclaimer": "Fan project disclaimer: Lara Croft Fans is an unofficial fan-made project and is not affiliated with Crystal Dynamics, Embracer Group, or the Tomb Raider rights holders.",
+      "navigationLabel": "Expedition camp navigation",
+      "disclaimer": "Unofficial fan website. Tomb Raider and Lara Croft belong to their respective owners.",
       "copyright": "© 2026 Lara Croft Fans. Fan-made project."
     }
   }

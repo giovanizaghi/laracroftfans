@@ -4,14 +4,32 @@ import { HeroSection } from "./hero-section";
 import { MapSection } from "./map-section";
 import { SiteFooter } from "./site-footer";
 import { TombEntrance } from "./tomb-entrance";
+import { SiteHeader } from "@/components/site/site-header";
+import type { NavItem } from "@/components/site/nav-data";
 
 type MapCategory = {
   title: string;
   description: string;
 };
 
+type DiscoveryCard = {
+  id: string;
+  title: string;
+};
+
 type ComingSoonPageProps = {
   content: {
+    navigation: {
+      ariaLabel: string;
+      menuOpen: string;
+      menuClose: string;
+      items: NavItem[];
+    };
+    language: {
+      ariaLabel: string;
+      english: string;
+      portuguese: string;
+    };
     hero: {
       kicker: string;
       subtitle: string;
@@ -25,7 +43,7 @@ type ComingSoonPageProps = {
     };
     discovery: {
       title: string;
-      cards: string[];
+      cards: DiscoveryCard[];
     };
     map: {
       eyebrow: string;
@@ -38,7 +56,7 @@ type ComingSoonPageProps = {
       games: string[];
     };
     footer: {
-      languagePlaceholder: string;
+      navigationLabel: string;
       disclaimer: string;
       copyright: string;
     };
@@ -51,39 +69,55 @@ type ComingSoonPageProps = {
 
 export function ComingSoonPage({ content, socialUrls }: ComingSoonPageProps) {
   return (
-    <main className="min-h-screen bg-stone-950">
-      <HeroSection
-        kicker={content.hero.kicker}
-        subtitle={content.hero.subtitle}
-        instagramUrl={socialUrls.instagram}
-        youtubeUrl={socialUrls.youtube}
-        instagramLabel={content.hero.instagramLabel}
-        youtubeLabel={content.hero.youtubeLabel}
+    <>
+      <SiteHeader
+        items={content.navigation.items}
+        labels={{
+          navigation: content.navigation.ariaLabel,
+          menuOpen: content.navigation.menuOpen,
+          menuClose: content.navigation.menuClose
+        }}
+        languageLabels={content.language}
       />
-      <TombEntrance {...content.entrance} />
-      <DiscoverySection
-        title={content.discovery.title}
-        cards={content.discovery.cards}
-      />
-      <MapSection
-        eyebrow={content.map.eyebrow}
-        title={content.map.title}
-        subtitle={content.map.subtitle}
-        categories={content.map.categories}
-      />
-      <GamesTimeline
-        title={content.timeline.title}
-        games={content.timeline.games}
-      />
+      <main className="min-h-screen bg-stone-950">
+        <HeroSection
+          kicker={content.hero.kicker}
+          subtitle={content.hero.subtitle}
+          instagramUrl={socialUrls.instagram}
+          youtubeUrl={socialUrls.youtube}
+          instagramLabel={content.hero.instagramLabel}
+          youtubeLabel={content.hero.youtubeLabel}
+        />
+        <TombEntrance id="about" {...content.entrance} />
+        <DiscoverySection
+          id="media"
+          title={content.discovery.title}
+          cards={content.discovery.cards}
+        />
+        <MapSection
+          id="community"
+          eyebrow={content.map.eyebrow}
+          title={content.map.title}
+          subtitle={content.map.subtitle}
+          categories={content.map.categories}
+        />
+        <GamesTimeline
+          id="timeline"
+          title={content.timeline.title}
+          games={content.timeline.games}
+        />
+      </main>
       <SiteFooter
+        navItems={content.navigation.items}
         instagramUrl={socialUrls.instagram}
         youtubeUrl={socialUrls.youtube}
         instagramLabel={content.hero.instagramLabel}
         youtubeLabel={content.hero.youtubeLabel}
-        languagePlaceholder={content.footer.languagePlaceholder}
+        languageLabels={content.language}
+        navigationLabel={content.footer.navigationLabel}
         disclaimer={content.footer.disclaimer}
         copyright={content.footer.copyright}
       />
-    </main>
+    </>
   );
 }
