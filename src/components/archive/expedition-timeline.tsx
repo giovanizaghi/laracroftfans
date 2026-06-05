@@ -3,39 +3,47 @@
 import { motion } from "framer-motion";
 import { Landmark } from "lucide-react";
 
-import type { Game } from "@/data/games";
+import type { TimelineMilestone } from "@/services/archive-types";
 
 type ExpeditionTimelineProps = {
   basePath: string;
-  games: Game[];
+  milestones: TimelineMilestone[];
 };
 
-export function ExpeditionTimeline({ basePath, games }: ExpeditionTimelineProps) {
+export function ExpeditionTimeline({
+  basePath,
+  milestones
+}: ExpeditionTimelineProps) {
   return (
     <div className="expedition-timeline" aria-label="Tomb Raider timeline">
       <div className="timeline-route" aria-hidden="true" />
-      {games.map((game, index) => (
+      {milestones.map((milestone, index) => (
         <motion.a
           className="timeline-marker group"
-          href={`${basePath}/games/${game.slug}`}
+          href={
+            milestone.gameSlug
+              ? `${basePath}/games/${milestone.gameSlug}`
+              : `${basePath}/timeline#${milestone.id}`
+          }
+          id={milestone.id}
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.34, delay: Math.min(index * 0.035, 0.28) }}
           whileHover={{ y: -6 }}
-          key={game.id}
+          key={milestone.id}
         >
           <span className="timeline-icon" aria-hidden="true">
             <Landmark className="h-4 w-4" />
           </span>
           <span className="text-xs font-black uppercase text-amber-200/75">
-            {game.releaseYear}
+            {milestone.year}
           </span>
           <strong className="mt-2 block text-base uppercase text-amber-50">
-            {game.title}
+            {milestone.title}
           </strong>
           <span className="mt-3 block text-sm leading-6 text-stone-300">
-            {game.description}
+            {milestone.description}
           </span>
         </motion.a>
       ))}

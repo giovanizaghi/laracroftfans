@@ -3,7 +3,9 @@ import { getTranslations } from "next-intl/server";
 
 import { ArtifactCard } from "@/components/archive/artifact-card";
 import { TombSection } from "@/components/archive/tomb-section";
-import { games } from "@/data/games";
+import { GameService } from "@/services/game-service";
+
+export const revalidate = 86400;
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -36,6 +38,7 @@ export async function generateMetadata({
 export default async function GamesPage({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations("gamesPage");
+  const games = await GameService.getAllGames();
 
   return (
     <main className="min-h-screen bg-stone-950 text-stone-100">

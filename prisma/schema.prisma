@@ -6,3 +6,109 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum MediaType {
+  COVER
+  SCREENSHOT
+  WALLPAPER
+  ARTWORK
+  CONCEPT_ART
+  PROMOTIONAL
+}
+
+model Game {
+  id               String          @id @default(cuid())
+  slug             String          @unique
+  title            String
+  shortDescription String
+  fullDescription  String
+  story            String
+  development      String
+  trivia           String[]
+  releaseDate      DateTime
+  coverImage       String
+  heroImage        String
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  mediaAssets      MediaAsset[]
+  platforms        GamePlatform[]
+  timelineEvents   TimelineEvent[]
+
+  @@index([slug])
+  @@index([releaseDate])
+}
+
+model Platform {
+  id        String         @id @default(cuid())
+  name      String
+  slug      String         @unique
+  games     GamePlatform[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+}
+
+model GamePlatform {
+  gameId     String
+  platformId String
+  game       Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  platform   Platform @relation(fields: [platformId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@id([gameId, platformId])
+  @@index([platformId])
+}
+
+model MediaAsset {
+  id           String    @id @default(cuid())
+  gameId       String?
+  game         Game?     @relation(fields: [gameId], references: [id], onDelete: SetNull)
+  title        String
+  description  String
+  type         MediaType
+  imageUrl     String
+  thumbnailUrl String
+  createdAt    DateTime  @default(now())
+
+  @@index([gameId])
+  @@index([type])
+}
+
+model TimelineEvent {
+  id          String   @id @default(cuid())
+  year        Int
+  title       String
+  description String
+  eventDate   DateTime
+  gameId      String?
+  game        Game?    @relation(fields: [gameId], references: [id], onDelete: SetNull)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([year])
+  @@index([eventDate])
+  @@index([gameId])
+}
+
+model Character {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String
+  imageUrl    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([slug])
+}
+
+model Location {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String
+  imageUrl    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([slug])
+}

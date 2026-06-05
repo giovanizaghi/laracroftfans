@@ -5,6 +5,8 @@ import { DustParticles } from "@/components/archive/dust-particles";
 import { StonePanel } from "@/components/archive/stone-panel";
 import { TorchDivider } from "@/components/archive/torch-divider";
 
+export const revalidate = 86400;
+
 type PageProps = {
   params: Promise<{ locale: string }>;
 };

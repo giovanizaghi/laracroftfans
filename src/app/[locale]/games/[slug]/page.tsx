@@ -1,3 +1,4 @@
+import { cache } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
@@ -7,14 +8,20 @@ import { DustParticles } from "@/components/archive/dust-particles";
 import { StonePanel } from "@/components/archive/stone-panel";
 import { TombSection } from "@/components/archive/tomb-section";
 import { TorchDivider } from "@/components/archive/torch-divider";
-import { games, getGameBySlug } from "@/data/games";
 import { routing } from "@/lib/i18n/routing";
+import { GameService } from "@/services/game-service";
+
+const getGame = cache((slug: string) => GameService.getGameBySlug(slug));
+
+export const revalidate = 86400;
 
 type PageProps = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const games = await GameService.getGameSlugs();
+
   return routing.locales.flatMap((locale) =>
     games.map((game) => ({ locale, slug: game.slug }))
   );
@@ -24,7 +31,7 @@ export async function generateMetadata({
   params
 }: PageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const game = getGameBySlug(slug);
+  const game = await getGame(slug);
 
   if (!game) {
     return {};
@@ -50,7 +57,7 @@ export async function generateMetadata({
 
 export default async function GameDetailPage({ params }: PageProps) {
   const { locale, slug } = await params;
-  const game = getGameBySlug(slug);
+  const game = await getGame(slug);
   const t = await getTranslations("gameDetail");
 
   if (!game) {

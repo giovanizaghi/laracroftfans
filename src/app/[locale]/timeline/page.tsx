@@ -4,7 +4,9 @@ import { getTranslations } from "next-intl/server";
 import { ExpeditionTimeline } from "@/components/archive/expedition-timeline";
 import { StonePanel } from "@/components/archive/stone-panel";
 import { TombSection } from "@/components/archive/tomb-section";
-import { games } from "@/data/games";
+import { TimelineService } from "@/services/timeline-service";
+
+export const revalidate = 86400;
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -37,6 +39,7 @@ export async function generateMetadata({
 export default async function TimelinePage({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations("timelinePage");
+  const milestones = await TimelineService.getTimelineEvents();
 
   return (
     <main className="min-h-screen bg-stone-950 text-stone-100">
@@ -50,7 +53,7 @@ export default async function TimelinePage({ params }: PageProps) {
         <StonePanel className="mb-8">
           <p className="text-sm leading-7 text-stone-300">{t("mapNote")}</p>
         </StonePanel>
-        <ExpeditionTimeline basePath={`/${locale}`} games={games} />
+        <ExpeditionTimeline basePath={`/${locale}`} milestones={milestones} />
       </TombSection>
     </main>
   );

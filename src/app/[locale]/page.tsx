@@ -8,7 +8,9 @@ import { DustParticles } from "@/components/archive/dust-particles";
 import { StonePanel } from "@/components/archive/stone-panel";
 import { TombSection } from "@/components/archive/tomb-section";
 import { TorchDivider } from "@/components/archive/torch-divider";
-import { games } from "@/data/games";
+import { GameService } from "@/services/game-service";
+
+export const revalidate = 86400;
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -41,7 +43,7 @@ export async function generateMetadata({
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations("archiveHome");
-  const featuredGames = games.slice(0, 3);
+  const featuredGames = await GameService.getFeaturedGames(3);
 
   return (
     <main className="min-h-screen bg-stone-950 text-stone-100">
