@@ -9,14 +9,24 @@ export type NavItemId =
 export type NavItem = {
   id: NavItemId;
   label: string;
-  href: `#${NavItemId}`;
+  href: string;
 };
 
-export const navAnchors = {
-  home: "#home",
-  games: "#games",
-  timeline: "#timeline",
-  media: "#media",
-  community: "#community",
-  about: "#about"
-} as const satisfies Record<NavItemId, `#${NavItemId}`>;
+export const navRoutes = {
+  home: "",
+  games: "/games",
+  timeline: "/timeline",
+  media: "/media",
+  community: "/community",
+  about: "/about"
+} as const satisfies Record<NavItemId, string>;
+
+export function buildLocalizedNavItems(
+  locale: string,
+  items: Array<{ id: NavItemId; label: string }>
+): NavItem[] {
+  return items.map((item) => ({
+    ...item,
+    href: `/${locale}${navRoutes[item.id]}`
+  }));
+}

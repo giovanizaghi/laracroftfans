@@ -9,6 +9,7 @@ import { RelicMobileMenu } from "./relic-mobile-menu";
 
 type SiteHeaderProps = {
   items: NavItem[];
+  homeHref: string;
   labels: {
     navigation: string;
     menuOpen: string;
@@ -23,6 +24,7 @@ type SiteHeaderProps = {
 
 export function SiteHeader({
   items,
+  homeHref,
   labels,
   languageLabels
 }: SiteHeaderProps) {
@@ -32,7 +34,7 @@ export function SiteHeader({
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <a
           className="group relative z-10 block w-28 shrink-0 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 sm:w-36"
-          href="#home"
+          href={homeHref}
           aria-label="Lara Croft Fans"
         >
           <Image

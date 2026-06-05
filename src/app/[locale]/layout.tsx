@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
+import { SiteFooter } from "@/components/site/site-footer";
+import { SiteHeader } from "@/components/site/site-header";
+import { buildLocalizedNavItems, type NavItemId } from "@/components/site/nav-data";
 import { routing } from "@/lib/i18n/routing";
 import "@/styles/globals.css";
 
@@ -50,10 +54,47 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  const t = await getTranslations({ locale, namespace: "site" });
+  const navItems = buildLocalizedNavItems(
+    locale,
+    t.raw("navigation.items") as Array<{ id: NavItemId; label: string }>
+  );
+
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <SiteHeader
+            homeHref={`/${locale}`}
+            items={navItems}
+            labels={{
+              navigation: t("navigation.ariaLabel"),
+              menuOpen: t("navigation.menuOpen"),
+              menuClose: t("navigation.menuClose")
+            }}
+            languageLabels={{
+              ariaLabel: t("language.ariaLabel"),
+              english: t("language.english"),
+              portuguese: t("language.portuguese")
+            }}
+          />
+          {children}
+          <SiteFooter
+            navItems={navItems}
+            instagramUrl={process.env.NEXT_PUBLIC_INSTAGRAM_URL || "#"}
+            youtubeUrl={process.env.NEXT_PUBLIC_YOUTUBE_URL || "#"}
+            instagramLabel={t("social.instagram")}
+            youtubeLabel={t("social.youtube")}
+            languageLabels={{
+              ariaLabel: t("language.ariaLabel"),
+              english: t("language.english"),
+              portuguese: t("language.portuguese")
+            }}
+            navigationLabel={t("footer.navigationLabel")}
+            disclaimer={t("footer.disclaimer")}
+            copyright={t("footer.copyright")}
+          />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

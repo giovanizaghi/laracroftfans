@@ -3,6 +3,160 @@
     "name": "Lara Croft Fans",
     "description": "O arquivo definitivo para fãs de Tomb Raider"
   },
+  "site": {
+    "navigation": {
+      "ariaLabel": "Caminhos da tumba",
+      "menuOpen": "Abrir menu relíquia",
+      "menuClose": "Fechar menu relíquia",
+      "items": [
+        {
+          "id": "home",
+          "label": "Início"
+        },
+        {
+          "id": "games",
+          "label": "Jogos"
+        },
+        {
+          "id": "timeline",
+          "label": "Linha do tempo"
+        },
+        {
+          "id": "media",
+          "label": "Mídia"
+        },
+        {
+          "id": "community",
+          "label": "Comunidade"
+        },
+        {
+          "id": "about",
+          "label": "Sobre"
+        }
+      ]
+    },
+    "language": {
+      "ariaLabel": "Seletor de idioma",
+      "english": "EN",
+      "portuguese": "PT"
+    },
+    "social": {
+      "instagram": "Instagram",
+      "youtube": "YouTube"
+    },
+    "footer": {
+      "navigationLabel": "Navegação do acampamento de expedição",
+      "disclaimer": "Site de fãs não oficial. Tomb Raider e Lara Croft pertencem aos seus respectivos proprietários.",
+      "copyright": "© 2026 Lara Croft Fans. Projeto feito por fãs."
+    }
+  },
+  "archiveHome": {
+    "meta": {
+      "title": "Arquivo do Explorador",
+      "description": "Explore um arquivo de fãs de Tomb Raider com jogos, linha do tempo, mídia e notas de preservação."
+    },
+    "kicker": "Arquivo do Explorador",
+    "title": "Um arquivo de Tomb Raider escondido entre as ruínas",
+    "description": "Atravesse a entrada selada e entre em um arquivo público de fãs construído como um museu enterrado da história de Lara Croft.",
+    "primaryCta": "Entrar no Arquivo de Jogos",
+    "secondaryCta": "Traçar a Linha do Tempo",
+    "featured": {
+      "eyebrow": "Tábuas Recuperadas",
+      "title": "Expedições em Destaque",
+      "description": "Uma primeira prateleira de aventuras preservadas no cofre cronológico do arquivo.",
+      "cta": "Explorar Jogo"
+    },
+    "chambers": {
+      "eyebrow": "Câmaras do Arquivo",
+      "title": "Escolha uma passagem",
+      "description": "Cada seção é encenada como uma câmara diferente dentro do mesmo sítio arqueológico.",
+      "games": "Cofre de Jogos",
+      "gamesText": "Tábuas cronológicas para os principais lançamentos de Tomb Raider.",
+      "timeline": "Linha do Tempo Gravada",
+      "timelineText": "Uma rota pelas descobertas e viradas da franquia.",
+      "media": "Exposição de Mídia",
+      "mediaText": "Prateleiras de catálogo para wallpapers, artes, screenshots e peças promocionais.",
+      "enter": "Entrar na Câmara"
+    }
+  },
+  "gamesPage": {
+    "meta": {
+      "title": "Arquivo de Jogos",
+      "description": "Navegue pelos jogos Tomb Raider em ordem cronológica com entradas estáticas de arquivo."
+    },
+    "eyebrow": "Cofre de Jogos",
+    "title": "Arquivo Cronológico de Jogos",
+    "description": "Cada grande lançamento de Tomb Raider é catalogado como uma descoberta arqueológica, pronto para receber pesquisas mais profundas.",
+    "explore": "Explorar"
+  },
+  "gameDetail": {
+    "eyebrow": "Tábua do Jogo",
+    "releaseDate": "Data de lançamento",
+    "platforms": "Plataformas",
+    "back": "Voltar para Jogos",
+    "overview": "Visão geral",
+    "story": "História",
+    "development": "Desenvolvimento",
+    "trivia": "Curiosidades",
+    "gallery": "Galeria"
+  },
+  "timelinePage": {
+    "meta": {
+      "title": "Linha do Tempo da Expedição",
+      "description": "Acompanhe a história de Tomb Raider por uma rota antiga interativa."
+    },
+    "eyebrow": "Rota Gravada",
+    "title": "Linha do Tempo da Expedição",
+    "description": "A história da franquia é mapeada como gravuras em uma parede de templo, com cada grande lançamento posicionado na rota.",
+    "mapNote": "Este mapa de parede usa dados estáticos por enquanto, mas a estrutura está pronta para marcos futuros, mídia, aniversários e notas editoriais."
+  },
+  "mediaPage": {
+    "meta": {
+      "title": "Arquivo de Mídia",
+      "description": "Navegue por categorias temporárias de wallpapers, artes, screenshots e imagens promocionais de Tomb Raider."
+    },
+    "eyebrow": "Exposição do Museu",
+    "title": "Arquivo de Mídia",
+    "description": "Uma câmara de catálogo para material visual, organizada como placas de museu em vez de um feed genérico de imagens."
+  },
+  "communityPage": {
+    "meta": {
+      "title": "Câmara da Comunidade",
+      "description": "A câmara da comunidade Lara Croft Fans está selada por enquanto."
+    },
+    "eyebrow": "Passagem Selada",
+    "title": "Community Chamber - Opening Soon",
+    "description": "A porta da comunidade permanece trancada enquanto o arquivo é preparado. A luz das tochas marca a entrada para futuros projetos de fãs, destaques sociais e avisos de expedição.",
+    "note": "Nenhuma conta, comentário ou sistema administrativo está planejado para esta fase."
+  },
+  "aboutPage": {
+    "meta": {
+      "title": "Sobre o Arquivo",
+      "description": "Conheça o arquivo de fãs Lara Croft Fans e sua missão de preservação."
+    },
+    "eyebrow": "Origem do Arquivo",
+    "title": "Uma câmara de preservação feita por fãs",
+    "description": "Lara Croft Fans é um projeto não oficial criado para celebrar a história de Tomb Raider com cuidado, atmosfera e acesso público.",
+    "sections": [
+      {
+        "title": "Missão",
+        "body": "Reunir a história de Tomb Raider em um arquivo de fãs que pareça curado, explorável e respeitoso com o legado da franquia."
+      },
+      {
+        "title": "Visão",
+        "body": "Transformar cada página pública em uma câmara diferente: jogos como tábuas, mídia como exposições e linhas do tempo como rotas arqueológicas."
+      },
+      {
+        "title": "Planos Futuros",
+        "body": "O arquivo está preparado para páginas mais profundas de jogos, registros de personagens, galerias, colecionáveis, guias e destaques da comunidade."
+      }
+    ],
+    "preservation": {
+      "title": "Preservando a trilha",
+      "description": "Esta fase usa apenas conteúdo estático, mas a estrutura está pronta para um arquivo mais rico.",
+      "body": "O projeto não reivindica propriedade sobre Tomb Raider ou Lara Croft. Ele existe como uma celebração feita por fãs da descoberta, da história de design e do encanto duradouro de explorar espaços antigos."
+    }
+  },
   "comingSoon": {
     "navigation": {
       "ariaLabel": "Caminhos da tumba",

@@ -3,6 +3,160 @@
     "name": "Lara Croft Fans",
     "description": "The ultimate Tomb Raider fan archive"
   },
+  "site": {
+    "navigation": {
+      "ariaLabel": "Tomb paths",
+      "menuOpen": "Open relic menu",
+      "menuClose": "Close relic menu",
+      "items": [
+        {
+          "id": "home",
+          "label": "Home"
+        },
+        {
+          "id": "games",
+          "label": "Games"
+        },
+        {
+          "id": "timeline",
+          "label": "Timeline"
+        },
+        {
+          "id": "media",
+          "label": "Media"
+        },
+        {
+          "id": "community",
+          "label": "Community"
+        },
+        {
+          "id": "about",
+          "label": "About"
+        }
+      ]
+    },
+    "language": {
+      "ariaLabel": "Language switcher",
+      "english": "EN",
+      "portuguese": "PT"
+    },
+    "social": {
+      "instagram": "Instagram",
+      "youtube": "YouTube"
+    },
+    "footer": {
+      "navigationLabel": "Expedition camp navigation",
+      "disclaimer": "Unofficial fan website. Tomb Raider and Lara Croft belong to their respective owners.",
+      "copyright": "© 2026 Lara Croft Fans. Fan-made project."
+    }
+  },
+  "archiveHome": {
+    "meta": {
+      "title": "Explorer's Archive",
+      "description": "Explore a fan-made Tomb Raider archive of games, timelines, media, and preservation notes."
+    },
+    "kicker": "Explorer's Archive",
+    "title": "A Tomb Raider archive hidden inside the ruins",
+    "description": "Step past the sealed entrance into a public fan archive built like a buried museum of Lara Croft history.",
+    "primaryCta": "Enter the Games Archive",
+    "secondaryCta": "Trace the Timeline",
+    "featured": {
+      "eyebrow": "Recovered Tablets",
+      "title": "Featured Expeditions",
+      "description": "A first shelf of preserved adventures from the archive's chronological vault.",
+      "cta": "Explore Game"
+    },
+    "chambers": {
+      "eyebrow": "Archive Chambers",
+      "title": "Choose a passage",
+      "description": "Each section is staged as a different chamber inside the same archaeological site.",
+      "games": "Games Vault",
+      "gamesText": "Chronological tablets for the major Tomb Raider releases.",
+      "timeline": "Engraved Timeline",
+      "timelineText": "A route through the franchise's discoveries and turning points.",
+      "media": "Media Exhibit",
+      "mediaText": "Catalog shelves for wallpapers, artwork, screenshots, and promotional pieces.",
+      "enter": "Enter Chamber"
+    }
+  },
+  "gamesPage": {
+    "meta": {
+      "title": "Games Archive",
+      "description": "Browse Tomb Raider games in chronological order with static archive entries."
+    },
+    "eyebrow": "Games Vault",
+    "title": "Chronological Game Archive",
+    "description": "Every major Tomb Raider release is cataloged as an archaeological finding, ready to be expanded with deeper research.",
+    "explore": "Explore"
+  },
+  "gameDetail": {
+    "eyebrow": "Game Tablet",
+    "releaseDate": "Release date",
+    "platforms": "Platforms",
+    "back": "Back to Games",
+    "overview": "Overview",
+    "story": "Story",
+    "development": "Development",
+    "trivia": "Trivia",
+    "gallery": "Gallery"
+  },
+  "timelinePage": {
+    "meta": {
+      "title": "Expedition Timeline",
+      "description": "Follow Tomb Raider history through an interactive ancient route."
+    },
+    "eyebrow": "Engraved Route",
+    "title": "Expedition Timeline",
+    "description": "The franchise history is mapped like temple wall engravings, with every major release placed along the route.",
+    "mapNote": "This wall map uses static archive data now, but it is structured for future milestones, media, anniversaries, and editorial notes."
+  },
+  "mediaPage": {
+    "meta": {
+      "title": "Media Archive",
+      "description": "Browse placeholder media categories for Tomb Raider wallpapers, artwork, screenshots, and promotional images."
+    },
+    "eyebrow": "Museum Exhibit",
+    "title": "Media Archive",
+    "description": "A catalog chamber for visual material, arranged like museum plates rather than a generic image feed."
+  },
+  "communityPage": {
+    "meta": {
+      "title": "Community Chamber",
+      "description": "The Lara Croft Fans community chamber is sealed for now."
+    },
+    "eyebrow": "Sealed Passage",
+    "title": "Community Chamber - Opening Soon",
+    "description": "The community door remains locked while the archive is prepared. Torchlight marks the entrance for future fan projects, social highlights, and expedition notices.",
+    "note": "No accounts, comments, or admin systems are planned for this phase."
+  },
+  "aboutPage": {
+    "meta": {
+      "title": "About the Archive",
+      "description": "Learn about the fan-made Lara Croft Fans archive and its preservation mission."
+    },
+    "eyebrow": "Archive Origin",
+    "title": "A fan-made preservation chamber",
+    "description": "Lara Croft Fans is a non-official project built to celebrate Tomb Raider history with care, atmosphere, and public access.",
+    "sections": [
+      {
+        "title": "Mission",
+        "body": "To gather Tomb Raider history into a fan archive that feels curated, explorable, and respectful of the franchise legacy."
+      },
+      {
+        "title": "Vision",
+        "body": "To turn each public page into a different chamber: games as tablets, media as exhibits, and timelines as archaeological routes."
+      },
+      {
+        "title": "Future Plans",
+        "body": "The archive is prepared for deeper game pages, character records, galleries, collectibles, guides, and fan community highlights."
+      }
+    ],
+    "preservation": {
+      "title": "Preserving the trail",
+      "description": "This phase uses static content only, but the structure is ready for richer archive work.",
+      "body": "The project does not claim ownership of Tomb Raider or Lara Croft. It exists as a fan-made celebration of discovery, design history, and the enduring appeal of exploring ancient spaces."
+    }
+  },
   "comingSoon": {
     "navigation": {
       "ariaLabel": "Tomb paths",
