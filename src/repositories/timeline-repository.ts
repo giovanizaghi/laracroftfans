@@ -1,18 +1,17 @@
 import { prisma } from "@/lib/prisma";
 
 export class TimelineRepository {
-  static findAll() {
+  static findAll(locale: string) {
     return prisma.timelineEvent.findMany({
       orderBy: [
-        {
-          eventDate: "asc"
-        },
-        {
-          title: "asc"
-        }
+        { eventDate: "asc" },
+        { title: "asc" }
       ],
       include: {
-        game: true
+        game: true,
+        translations: {
+          where: { locale }
+        }
       }
     });
   }

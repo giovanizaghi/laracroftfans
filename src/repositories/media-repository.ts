@@ -3,7 +3,7 @@ import { MediaType } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 export class MediaRepository {
-  static findArchiveAssets() {
+  static findArchiveAssets(locale: string) {
     return prisma.mediaAsset.findMany({
       where: {
         type: {
@@ -17,19 +17,15 @@ export class MediaRepository {
         }
       },
       orderBy: [
-        {
-          type: "asc"
-        },
-        {
-          title: "asc"
-        }
+        { type: "asc" },
+        { title: "asc" }
       ],
       include: {
         game: {
-          select: {
-            title: true,
-            slug: true
-          }
+          select: { title: true, slug: true }
+        },
+        translations: {
+          where: { locale }
         }
       }
     });

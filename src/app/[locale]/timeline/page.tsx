@@ -39,7 +39,7 @@ export async function generateMetadata({
 export default async function TimelinePage({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations("timelinePage");
-  const milestones = await TimelineService.getTimelineEvents();
+  const milestones = await TimelineService.getTimelineEvents(locale);
 
   return (
     <main className="min-h-screen bg-stone-950 text-stone-100">

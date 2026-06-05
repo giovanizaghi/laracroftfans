@@ -17,8 +17,8 @@ enum MediaType {
 }
 
 model Game {
-  id               String          @id @default(cuid())
-  slug             String          @unique
+  id               String               @id @default(cuid())
+  slug             String               @unique
   title            String
   shortDescription String
   fullDescription  String
@@ -28,14 +28,33 @@ model Game {
   releaseDate      DateTime
   coverImage       String
   heroImage        String
-  createdAt        DateTime        @default(now())
-  updatedAt        DateTime        @updatedAt
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
   mediaAssets      MediaAsset[]
   platforms        GamePlatform[]
   timelineEvents   TimelineEvent[]
+  translations     GameTranslation[]
 
   @@index([slug])
   @@index([releaseDate])
+}
+
+model GameTranslation {
+  id               String   @id @default(cuid())
+  gameId           String
+  game             Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  locale           String
+  title            String
+  shortDescription String
+  fullDescription  String
+  story            String
+  development      String
+  trivia           String[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([gameId, locale])
+  @@index([locale])
 }
 
 model Platform {
@@ -59,56 +78,116 @@ model GamePlatform {
 }
 
 model MediaAsset {
-  id           String    @id @default(cuid())
+  id           String                  @id @default(cuid())
   gameId       String?
-  game         Game?     @relation(fields: [gameId], references: [id], onDelete: SetNull)
+  game         Game?                   @relation(fields: [gameId], references: [id], onDelete: SetNull)
   title        String
   description  String
   type         MediaType
   imageUrl     String
   thumbnailUrl String
-  createdAt    DateTime  @default(now())
+  createdAt    DateTime                @default(now())
+  translations MediaAssetTranslation[]
 
   @@index([gameId])
   @@index([type])
 }
 
-model TimelineEvent {
-  id          String   @id @default(cuid())
-  year        Int
+model MediaAssetTranslation {
+  id          String     @id @default(cuid())
+  assetId     String
+  asset       MediaAsset @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  locale      String
   title       String
   description String
-  eventDate   DateTime
-  gameId      String?
-  game        Game?    @relation(fields: [gameId], references: [id], onDelete: SetNull)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@unique([assetId, locale])
+  @@index([locale])
+}
+
+model TimelineEvent {
+  id           String                       @id @default(cuid())
+  year         Int
+  title        String
+  description  String
+  eventDate    DateTime
+  gameId       String?
+  game         Game?                        @relation(fields: [gameId], references: [id], onDelete: SetNull)
+  createdAt    DateTime                     @default(now())
+  updatedAt    DateTime                     @updatedAt
+  translations TimelineEventTranslation[]
 
   @@index([year])
   @@index([eventDate])
   @@index([gameId])
 }
 
-model Character {
-  id          String   @id @default(cuid())
-  slug        String   @unique
-  name        String
+model TimelineEventTranslation {
+  id          String        @id @default(cuid())
+  eventId     String
+  event       TimelineEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  locale      String
+  title       String
   description String
-  imageUrl    String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@unique([eventId, locale])
+  @@index([locale])
+}
+
+model Character {
+  id           String                  @id @default(cuid())
+  slug         String                  @unique
+  name         String
+  description  String
+  imageUrl     String
+  createdAt    DateTime                @default(now())
+  updatedAt    DateTime                @updatedAt
+  translations CharacterTranslation[]
 
   @@index([slug])
 }
 
-model Location {
-  id          String   @id @default(cuid())
-  slug        String   @unique
+model CharacterTranslation {
+  id          String    @id @default(cuid())
+  characterId String
+  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  locale      String
   name        String
   description String
-  imageUrl    String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([characterId, locale])
+  @@index([locale])
+}
+
+model Location {
+  id           String                @id @default(cuid())
+  slug         String                @unique
+  name         String
+  description  String
+  imageUrl     String
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+  translations LocationTranslation[]
+
+  @@index([slug])
+}
+
+model LocationTranslation {
+  id          String   @id @default(cuid())
+  locationId  String
+  location    Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  locale      String
+  name        String
+  description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  @@index([slug])
+  @@unique([locationId, locale])
+  @@index([locale])
 }

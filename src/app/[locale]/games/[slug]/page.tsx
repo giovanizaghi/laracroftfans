@@ -11,7 +11,9 @@ import { TorchDivider } from "@/components/archive/torch-divider";
 import { routing } from "@/lib/i18n/routing";
 import { GameService } from "@/services/game-service";
 
-const getGame = cache((slug: string) => GameService.getGameBySlug(slug));
+const getGame = cache((slug: string, locale: string) =>
+  GameService.getGameBySlug(slug, locale)
+);
 
 export const revalidate = 86400;
 
@@ -31,7 +33,7 @@ export async function generateMetadata({
   params
 }: PageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const game = await getGame(slug);
+  const game = await getGame(slug, locale);
 
   if (!game) {
     return {};
@@ -57,7 +59,7 @@ export async function generateMetadata({
 
 export default async function GameDetailPage({ params }: PageProps) {
   const { locale, slug } = await params;
-  const game = await getGame(slug);
+  const game = await getGame(slug, locale);
   const t = await getTranslations("gameDetail");
 
   if (!game) {

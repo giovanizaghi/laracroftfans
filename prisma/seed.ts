@@ -4,6 +4,108 @@ const prisma = new PrismaClient();
 
 const imagePlaceholder = "/images/midas-palace.png";
 
+// Portuguese translations for selected games (validates the i18n architecture)
+const ptGameTranslations: Record<
+  string,
+  {
+    title: string;
+    shortDescription: string;
+    fullDescription: string;
+    story: string;
+    development: string;
+    trivia: string[];
+  }
+> = {
+  "tomb-raider-1996": {
+    title: "Tomb Raider",
+    shortDescription:
+      "A primeira expedição de Lara Croft por cidades perdidas, tumbas antigas e o mistério do Scion.",
+    fullDescription:
+      "A aventura original estabeleceu o ritmo solitário e perigoso de Tomb Raider: exploração, plataformas, salas de enigmas e segredos milenares.",
+    story:
+      "Lara é contratada para recuperar um fragmento do Scion, mas descobre uma conspiração Atlante mais profunda, enterrada sob ruínas esquecidas.",
+    development:
+      "A Core Design construiu o jogo em torno de movimento 3D, travessia precisa e espaços monumentais que funcionavam como quebra-cabeças arquitetônicos.",
+    trivia: [
+      "O jogo apresentou Lara Croft como um dos ícones definitivos dos jogos de aventura.",
+      "Seus espaços de tumba usavam o silêncio e a escala tanto quanto a ação.",
+      "O Scion se tornou um dos artefatos mais reconhecíveis da franquia."
+    ]
+  },
+  "tomb-raider-ii": {
+    title: "Tomb Raider II",
+    shortDescription:
+      "Uma corrida pelo Punhal de Xian através de Veneza, naufrágios, monastérios e templos chineses escondidos.",
+    fullDescription:
+      "A sequência expandiu o mundo de Lara com set pieces maiores, veículos e uma sensação mais ampla de perseguição global.",
+    story:
+      "Lara rastreia o Punhal de Xian enquanto um culto tenta usar seu poder para transformação e conquista.",
+    development:
+      "O design apostou na variedade cinematográfica, mantendo as câmaras de enigmas e a travessia letal da série.",
+    trivia: [
+      "Os veículos se tornaram uma adição marcante da sequência.",
+      "A abertura na Grande Muralha estabeleceu um ritmo mais acelerado que o primeiro jogo.",
+      "Veneza deu à série uma das expedições urbanas mais memoráveis."
+    ]
+  },
+  "tomb-raider-legend": {
+    title: "Tomb Raider: Legend",
+    shortDescription:
+      "Uma busca veloz por fragmentos de Excalibur e o mistério do desaparecimento da mãe de Lara.",
+    fullDescription:
+      "Legend reintroduziu Lara com movimentos responsivos, ritmo cinematográfico e um foco renovado em aventuras ao redor do mundo.",
+    story:
+      "Lara segue relíquias artúrias e pistas pessoais ligadas ao desaparecimento que moldou sua infância.",
+    development:
+      "A Crystal Dynamics reconstruiu a série com uma travessia mais fluida, espaços legíveis e apostas narrativas com personagens marcantes.",
+    trivia: [
+      "Legend marcou o primeiro jogo principal de Tomb Raider pela Crystal Dynamics.",
+      "Zip e Alister forneciam suporte via rádio durante as expedições.",
+      "O gancho se tornou uma ferramenta central de travessia."
+    ]
+  },
+  "tomb-raider-2013": {
+    title: "Tomb Raider",
+    shortDescription:
+      "Uma história de origem sobre sobrevivência em Yamatai, onde Lara se torna a exploradora que os fãs conhecem.",
+    fullDescription:
+      "O reboot de 2013 reformulou Tomb Raider como uma expedição de sobrevivência intensa, com combate cinematográfico e exploração.",
+    story:
+      "Naufragada em Yamatai, Lara enfrenta cultistas, tempestades e o legado de Himiko enquanto luta para salvar sua equipe.",
+    development:
+      "A Crystal Dynamics reconstruiu a origem de Lara em torno de vulnerabilidade, resiliência e uma linguagem de aventura mais fundamentada.",
+    trivia: [
+      "O jogo iniciou a trilogia Survivor.",
+      "Yamatai misturou arqueologia com atmosfera de horror de sobrevivência.",
+      "As tumbas opcionais retornaram como espaços de enigmas compactos."
+    ]
+  }
+};
+
+// Portuguese translations for key timeline milestone events
+const ptTimelineMilestones: Record<string, { title: string; description: string }> = {
+  "Lara Croft enters gaming history": {
+    title: "Lara Croft entra para a história dos videogames",
+    description:
+      "O primeiro Tomb Raider estabelece exploração, isolamento e ruínas antigas como pilares da franquia."
+  },
+  "Crystal Dynamics era begins": {
+    title: "A era Crystal Dynamics começa",
+    description:
+      "Tomb Raider: Legend reintroduz Lara com uma nova linguagem de movimento e ritmo cinematográfico."
+  },
+  "Survivor trilogy begins": {
+    title: "A trilogia Survivor começa",
+    description:
+      "O reboot apresenta a origem de Lara através de sobrevivência, arqueologia e resiliência pessoal."
+  },
+  "Classic preservation returns": {
+    title: "A preservação dos clássicos retorna",
+    description:
+      "A trilogia clássica remasterizada traz as primeiras aventuras de volta ao foco do público."
+  }
+};
+
 const platforms = [
   "PC",
   "PlayStation",
@@ -449,6 +551,43 @@ async function main() {
     });
   }
 
+  // Seed game translations (EN mirrors parent fields; PT where defined)
+  for (const game of games) {
+    const record = gameRecords.get(game.slug);
+
+    if (!record) {
+      throw new Error(`Missing game record for ${game.slug}`);
+    }
+
+    await prisma.gameTranslation.create({
+      data: {
+        gameId: record.id,
+        locale: "en",
+        title: game.title,
+        shortDescription: game.shortDescription,
+        fullDescription: game.fullDescription,
+        story: game.story,
+        development: game.development,
+        trivia: game.trivia
+      }
+    });
+
+    const pt = ptGameTranslations[game.slug];
+
+    if (pt) {
+      await prisma.gameTranslation.create({
+        data: {
+          gameId: record.id,
+          locale: "pt",
+          ...pt
+        }
+      });
+    }
+  }
+
+  // slug-keyed so "Tomb Raider" (1996) and "Tomb Raider" (2013) don't collide
+  const gameEventRecords = new Map<string, { id: string; title: string; description: string }>();
+
   for (const game of games) {
     const record = gameRecords.get(game.slug);
 
@@ -456,7 +595,7 @@ async function main() {
       throw new Error(`Missing game ${game.slug}`);
     }
 
-    await prisma.timelineEvent.create({
+    const event = await prisma.timelineEvent.create({
       data: {
         year: record.releaseDate.getUTCFullYear(),
         title: `${game.title} release`,
@@ -465,40 +604,92 @@ async function main() {
         gameId: record.id
       }
     });
+
+    gameEventRecords.set(game.slug, {
+      id: event.id,
+      title: event.title,
+      description: game.shortDescription
+    });
   }
 
-  await prisma.timelineEvent.createMany({
-    data: [
-      {
-        year: 1996,
-        title: "Lara Croft enters gaming history",
-        description:
-          "The first Tomb Raider establishes exploration, isolation, and ancient ruins as franchise pillars.",
-        eventDate: new Date("1996-10-25T00:00:00.000Z")
-      },
-      {
-        year: 2006,
-        title: "Crystal Dynamics era begins",
-        description:
-          "Tomb Raider: Legend reintroduces Lara with a new movement language and cinematic pace.",
-        eventDate: new Date("2006-04-07T00:00:00.000Z")
-      },
-      {
-        year: 2013,
-        title: "Survivor trilogy begins",
-        description:
-          "The reboot presents Lara's origin through survival, archaeology, and personal resilience.",
-        eventDate: new Date("2013-03-05T00:00:00.000Z")
-      },
-      {
-        year: 2024,
-        title: "Classic preservation returns",
-        description:
-          "The remastered classic trilogy brings the earliest adventures back into public focus.",
-        eventDate: new Date("2024-02-14T00:00:00.000Z")
+  const milestones = [
+    {
+      year: 1996,
+      title: "Lara Croft enters gaming history",
+      description:
+        "The first Tomb Raider establishes exploration, isolation, and ancient ruins as franchise pillars.",
+      eventDate: new Date("1996-10-25T00:00:00.000Z")
+    },
+    {
+      year: 2006,
+      title: "Crystal Dynamics era begins",
+      description:
+        "Tomb Raider: Legend reintroduces Lara with a new movement language and cinematic pace.",
+      eventDate: new Date("2006-04-07T00:00:00.000Z")
+    },
+    {
+      year: 2013,
+      title: "Survivor trilogy begins",
+      description:
+        "The reboot presents Lara's origin through survival, archaeology, and personal resilience.",
+      eventDate: new Date("2013-03-05T00:00:00.000Z")
+    },
+    {
+      year: 2024,
+      title: "Classic preservation returns",
+      description:
+        "The remastered classic trilogy brings the earliest adventures back into public focus.",
+      eventDate: new Date("2024-02-14T00:00:00.000Z")
+    }
+  ];
+
+  const milestoneEventRecords: Array<{ id: string; title: string; description: string }> = [];
+
+  for (const milestone of milestones) {
+    const event = await prisma.timelineEvent.create({ data: milestone });
+
+    milestoneEventRecords.push({
+      id: event.id,
+      title: event.title,
+      description: event.description
+    });
+  }
+
+  // Seed EN translations for all game release events (slug-keyed, no collision)
+  for (const [, entry] of gameEventRecords.entries()) {
+    await prisma.timelineEventTranslation.create({
+      data: {
+        eventId: entry.id,
+        locale: "en",
+        title: entry.title,
+        description: entry.description
       }
-    ]
-  });
+    });
+  }
+
+  // Seed EN + PT translations for milestone events
+  for (const entry of milestoneEventRecords) {
+    await prisma.timelineEventTranslation.create({
+      data: {
+        eventId: entry.id,
+        locale: "en",
+        title: entry.title,
+        description: entry.description
+      }
+    });
+
+    const pt = ptTimelineMilestones[entry.title];
+
+    if (pt) {
+      await prisma.timelineEventTranslation.create({
+        data: {
+          eventId: entry.id,
+          locale: "pt",
+          ...pt
+        }
+      });
+    }
+  }
 
   await prisma.mediaAsset.createMany({
     data: globalMedia.map((asset) => ({

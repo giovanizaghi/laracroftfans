@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
+import { resolveTranslation } from "@/lib/i18n/translate";
 import { MediaType } from "@/services/archive-types";
 
 import { StonePanel } from "@/components/archive/stone-panel";
@@ -37,9 +38,18 @@ export async function generateMetadata({
   };
 }
 
-export default async function MediaPage() {
+export default async function MediaPage({ params }: PageProps) {
+  const { locale } = await params;
   const t = await getTranslations("mediaPage");
-  const assets = await MediaRepository.findArchiveAssets();
+  const rawAssets = await MediaRepository.findArchiveAssets(locale);
+  const assets = rawAssets.map((asset) => {
+    const resolved = resolveTranslation(
+      { title: asset.title, description: asset.description },
+      asset.translations,
+      locale
+    );
+    return { ...asset, ...resolved };
+  });
   const categories = [
     {
       id: "wallpapers",

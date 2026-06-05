@@ -38,7 +38,7 @@ export async function generateMetadata({
 export default async function GamesPage({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations("gamesPage");
-  const games = await GameService.getAllGames();
+  const games = await GameService.getAllGames(locale);
 
   return (
     <main className="min-h-screen bg-stone-950 text-stone-100">

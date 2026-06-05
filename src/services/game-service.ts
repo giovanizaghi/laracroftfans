@@ -1,5 +1,6 @@
 import { MediaType } from "@prisma/client";
 
+import { resolveTranslation } from "@/lib/i18n/translate";
 import { GameRepository } from "@/repositories/game-repository";
 
 import type { ArchiveGame, CoverTone } from "./archive-types";
@@ -17,7 +18,20 @@ function formatReleaseDate(date: Date) {
   }).format(date);
 }
 
-function mapGame(game: GameRecord, index = 0): ArchiveGame {
+function mapGame(game: GameRecord, index = 0, locale = "en"): ArchiveGame {
+  const resolved = resolveTranslation(
+    {
+      title: game.title,
+      shortDescription: game.shortDescription,
+      fullDescription: game.fullDescription,
+      story: game.story,
+      development: game.development,
+      trivia: game.trivia
+    },
+    game.translations,
+    locale
+  );
+
   const gallery = game.mediaAssets
     .filter((asset) => asset.type === MediaType.SCREENSHOT)
     .map((asset) => asset.title);
@@ -25,37 +39,37 @@ function mapGame(game: GameRecord, index = 0): ArchiveGame {
   return {
     id: game.id,
     slug: game.slug,
-    title: game.title,
+    title: resolved.title,
     releaseYear: game.releaseDate.getUTCFullYear(),
     releaseDate: formatReleaseDate(game.releaseDate),
-    description: game.shortDescription,
+    description: resolved.shortDescription,
     platforms: game.platforms.map(({ platform }) => platform.name),
     coverImage: game.coverImage,
     heroImage: game.heroImage,
     coverTone: coverTones[index % coverTones.length],
-    overview: game.fullDescription,
-    story: game.story,
-    development: game.development,
-    trivia: game.trivia,
+    overview: resolved.fullDescription,
+    story: resolved.story,
+    development: resolved.development,
+    trivia: resolved.trivia,
     gallery
   };
 }
 
 export class GameService {
-  static async getAllGames() {
-    const games = await GameRepository.findAll();
+  static async getAllGames(locale = "en") {
+    const games = await GameRepository.findAll(locale);
 
-    return games.map((game, index) => mapGame(game, index));
+    return games.map((game, index) => mapGame(game, index, locale));
   }
 
-  static async getFeaturedGames(limit = 3) {
-    const games = await this.getAllGames();
+  static async getFeaturedGames(limit = 3, locale = "en") {
+    const games = await this.getAllGames(locale);
 
     return games.slice(0, limit);
   }
 
-  static async getGameBySlug(slug: string) {
-    const game = await GameRepository.findBySlug(slug);
+  static async getGameBySlug(slug: string, locale = "en") {
+    const game = await GameRepository.findBySlug(slug, locale);
 
     if (!game) {
       return null;
@@ -63,7 +77,7 @@ export class GameService {
 
     const index = await GameRepository.countReleasedBefore(game.releaseDate);
 
-    return mapGame(game, index);
+    return mapGame(game, index, locale);
   }
 
   static async getGameSlugs() {

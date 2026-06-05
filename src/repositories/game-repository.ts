@@ -1,53 +1,30 @@
 import { prisma } from "@/lib/prisma";
 
+const gameIncludes = (locale: string) => ({
+  platforms: {
+    include: { platform: true },
+    orderBy: { platform: { name: "asc" as const } }
+  },
+  mediaAssets: {
+    orderBy: { createdAt: "asc" as const }
+  },
+  translations: {
+    where: { locale }
+  }
+});
+
 export class GameRepository {
-  static findAll() {
+  static findAll(locale: string) {
     return prisma.game.findMany({
-      orderBy: {
-        releaseDate: "asc"
-      },
-      include: {
-        platforms: {
-          include: {
-            platform: true
-          },
-          orderBy: {
-            platform: {
-              name: "asc"
-            }
-          }
-        },
-        mediaAssets: {
-          orderBy: {
-            createdAt: "asc"
-          }
-        }
-      }
+      orderBy: { releaseDate: "asc" },
+      include: gameIncludes(locale)
     });
   }
 
-  static findBySlug(slug: string) {
+  static findBySlug(slug: string, locale: string) {
     return prisma.game.findUnique({
-      where: {
-        slug
-      },
-      include: {
-        platforms: {
-          include: {
-            platform: true
-          },
-          orderBy: {
-            platform: {
-              name: "asc"
-            }
-          }
-        },
-        mediaAssets: {
-          orderBy: {
-            createdAt: "asc"
-          }
-        }
-      }
+      where: { slug },
+      include: gameIncludes(locale)
     });
   }
 
