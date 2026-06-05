@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 
+import { buildAlternates } from "@/lib/seo";
 import { AncientButton } from "@/components/archive/ancient-button";
 import { DustParticles } from "@/components/archive/dust-particles";
 import { StonePanel } from "@/components/archive/stone-panel";
@@ -42,9 +43,11 @@ export async function generateMetadata({
   return {
     title: game.title,
     description: game.description,
+    alternates: buildAlternates(locale, `/games/${slug}`),
     openGraph: {
       title: game.title,
       description: game.description,
+      url: buildAlternates(locale, `/games/${slug}`).canonical,
       locale,
       siteName: "Lara Croft Fans",
       type: "article"

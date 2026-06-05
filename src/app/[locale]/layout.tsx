@@ -8,15 +8,26 @@ import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { buildLocalizedNavItems, type NavItemId } from "@/components/site/nav-data";
 import { routing } from "@/lib/i18n/routing";
+import { getBaseUrl } from "@/lib/seo";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getBaseUrl()),
   title: {
     default: "Lara Croft Fans",
     template: "%s | Lara Croft Fans"
   },
   description: "A fan-made Tomb Raider portal.",
-  manifest: "/favicon/site.webmanifest",
+  openGraph: {
+    images: [
+      {
+        url: "/images/lara-croft-fans-logo.png",
+        width: 1536,
+        height: 1024,
+        alt: "Lara Croft Fans"
+      }
+    ]
+  },
   icons: {
     icon: [
       { url: "/favicon/favicon.ico", sizes: "48x48 32x32" },

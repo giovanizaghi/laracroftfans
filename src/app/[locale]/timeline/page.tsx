@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
+import { buildAlternates } from "@/lib/seo";
+
 import { ExpeditionTimeline } from "@/components/archive/expedition-timeline";
 import { StonePanel } from "@/components/archive/stone-panel";
 import { TombSection } from "@/components/archive/tomb-section";
@@ -21,9 +23,11 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
+    alternates: buildAlternates(locale, "/timeline"),
     openGraph: {
       title: t("title"),
       description: t("description"),
+      url: buildAlternates(locale, "/timeline").canonical,
       locale,
       siteName: "Lara Croft Fans",
       type: "website"

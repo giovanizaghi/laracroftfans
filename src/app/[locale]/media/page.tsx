@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
+import { buildAlternates } from "@/lib/seo";
+
 import { resolveTranslation } from "@/lib/i18n/translate";
 import { MediaType } from "@/services/archive-types";
 
@@ -23,9 +25,11 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
+    alternates: buildAlternates(locale, "/media"),
     openGraph: {
       title: t("title"),
       description: t("description"),
+      url: buildAlternates(locale, "/media").canonical,
       locale,
       siteName: "Lara Croft Fans",
       type: "website"
