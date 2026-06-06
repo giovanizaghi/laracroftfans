@@ -233,10 +233,8 @@ async function importGame(gameDir: string): Promise<{ slug: string; errors: stri
     });
   }
 
-  // Upsert translations for non-base locales
+  // Upsert translations for all locales (including base locale to keep en row in sync)
   for (const [locale, content] of Object.entries(localeContents)) {
-    if (locale === BASE_LOCALE) continue;
-
     await prisma.gameTranslation.upsert({
       where: { gameId_locale: { gameId: game.id, locale } },
       update: {
