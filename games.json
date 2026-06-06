@@ -1,0 +1,242 @@
+[
+  {
+    "slug": "tomb-raider-1996",
+    "title": "Tomb Raider",
+    "releaseDate": "1996-10-25",
+    "developer": "Core Design",
+    "publisher": "Eidos Interactive",
+    "engine": "Proprietary (Core Design)",
+    "director": null,
+    "producer": null,
+    "platforms": ["PC", "PlayStation", "Sega Saturn"],
+    "genre": ["Action-Adventure", "Platform"],
+    "knownFacts": [
+      "Lara Croft was designed by Toby Gard.",
+      "The character was originally named Lara Cruz before being changed to Lara Croft.",
+      "The game sold over 7 million copies worldwide.",
+      "Developed in approximately 18 months.",
+      "The Scion artifact is fragmented across Peru, Greece, Egypt, and Atlantis.",
+      "The game's success directly spawned the multimedia Tomb Raider franchise."
+    ]
+  },
+  {
+    "slug": "tomb-raider-ii",
+    "title": "Tomb Raider II",
+    "releaseDate": "1997-10-31",
+    "developer": "Core Design",
+    "publisher": "Eidos Interactive",
+    "engine": "Proprietary (Core Design)",
+    "director": null,
+    "producer": null,
+    "platforms": ["PC", "PlayStation"],
+    "genre": ["Action-Adventure", "Platform"],
+    "knownFacts": [
+      "The first Tomb Raider game to feature vehicles, including a speedboat and snowmobile.",
+      "Venice sequences required designing first underwater urban environments for the series.",
+      "Sold over 8 million copies, outselling the original at launch.",
+      "The Great Wall of China opens the game, establishing a faster-paced tone.",
+      "Marco Bartoli is the main antagonist.",
+      "The game introduced Lara's home base sequences at Croft Manor."
+    ]
+  },
+  {
+    "slug": "tomb-raider-iii",
+    "title": "Tomb Raider III",
+    "releaseDate": "1998-11-20",
+    "developer": "Core Design",
+    "publisher": "Eidos Interactive",
+    "engine": "Proprietary (Core Design)",
+    "director": null,
+    "producer": null,
+    "platforms": ["PC", "PlayStation"],
+    "genre": ["Action-Adventure", "Platform"],
+    "knownFacts": [
+      "Features non-linear level order — players can choose between India, South Pacific, London, and Nevada before Antarctica.",
+      "Known for its high difficulty, including levels in the London sewers and Area 51.",
+      "Dr. Willard is the primary antagonist.",
+      "The meteor artifact fragments are tied to mutation and ancient power.",
+      "One of the longest games in the classic trilogy by level count.",
+      "Contains hidden shortcuts and alternate paths not found in previous entries."
+    ]
+  },
+  {
+    "slug": "tomb-raider-the-last-revelation",
+    "title": "Tomb Raider: The Last Revelation",
+    "releaseDate": "1999-11-22",
+    "developer": "Core Design",
+    "publisher": "Eidos Interactive",
+    "engine": "Proprietary (Core Design, updated)",
+    "director": null,
+    "producer": null,
+    "platforms": ["PC", "PlayStation", "Dreamcast"],
+    "genre": ["Action-Adventure", "Platform"],
+    "knownFacts": [
+      "Almost entirely set in Egypt, exploring Luxor, Karnak, Alexandria, and the Giza Plateau.",
+      "Introduced a young Lara prologue set in Cambodia.",
+      "Werner Von Croy appears as both mentor and antagonist.",
+      "Uses a hub-and-spoke structure connecting several Egyptian sites.",
+      "The ending implied Lara's death, controversially.",
+      "Engine received upgrades including improved lighting and trap sequences."
+    ]
+  },
+  {
+    "slug": "tomb-raider-chronicles",
+    "title": "Tomb Raider Chronicles",
+    "releaseDate": "2000-11-17",
+    "developer": "Core Design",
+    "publisher": "Eidos Interactive",
+    "engine": "Proprietary (Core Design, The Last Revelation engine)",
+    "director": null,
+    "producer": null,
+    "platforms": ["PC", "PlayStation", "Dreamcast"],
+    "genre": ["Action-Adventure", "Platform"],
+    "knownFacts": [
+      "Structured as four flashback episodes recounted by Lara's friends at her memorial.",
+      "Features a teenage Lara in a supernatural episode set on an island.",
+      "Rome, a Russian submarine, Black Isle, and a skyscraper in Hamburg are the settings.",
+      "Reused engine and assets from The Last Revelation.",
+      "Bridged the classic era before a planned next-generation reinvention.",
+      "Regarded as a transitional entry rather than a full sequel."
+    ]
+  },
+  {
+    "slug": "tomb-raider-the-angel-of-darkness",
+    "title": "Tomb Raider: The Angel of Darkness",
+    "releaseDate": "2003-06-20",
+    "developer": "Core Design",
+    "publisher": "Eidos Interactive",
+    "engine": "Proprietary (Core Design, PS2 generation)",
+    "director": null,
+    "producer": null,
+    "platforms": ["PC", "PlayStation 2"],
+    "genre": ["Action-Adventure", "Stealth"],
+    "knownFacts": [
+      "Kurtis Trent is a secondary playable character with telekinetic abilities.",
+      "Originally planned as the first of a trilogy; sequel plans were cancelled after poor reception.",
+      "Suffered a troubled development cycle with repeated scope changes.",
+      "The Obscura Paintings and the Cabal are the central mystery.",
+      "Received poorly at launch for bugs and control issues but has since gained a cult following.",
+      "Marks the end of Core Design's involvement with the main Tomb Raider series."
+    ]
+  },
+  {
+    "slug": "tomb-raider-legend",
+    "title": "Tomb Raider: Legend",
+    "releaseDate": "2006-04-07",
+    "developer": "Crystal Dynamics",
+    "publisher": "Eidos Interactive",
+    "engine": "Crystal Engine",
+    "director": null,
+    "producer": null,
+    "platforms": ["PC", "PlayStation 2", "Xbox", "Xbox 360", "GameCube", "PSP"],
+    "genre": ["Action-Adventure", "Platform"],
+    "knownFacts": [
+      "First Tomb Raider game developed by Crystal Dynamics, who had previously made Legacy of Kain.",
+      "Introduced the grapple as a traversal tool.",
+      "Received strong critical acclaim, revitalizing the series after Angel of Darkness.",
+      "The game connects Arthurian mythology with the mystery of Lara's mother.",
+      "Radio-support characters Zip and Alister provide real-time commentary during expeditions.",
+      "Sold over 2.5 million copies in its first month."
+    ]
+  },
+  {
+    "slug": "tomb-raider-anniversary",
+    "title": "Tomb Raider: Anniversary",
+    "releaseDate": "2007-06-01",
+    "developer": "Crystal Dynamics",
+    "publisher": "Eidos Interactive",
+    "engine": "Crystal Engine",
+    "director": null,
+    "producer": null,
+    "platforms": ["PC", "PlayStation 2", "Xbox 360", "Wii", "PSP"],
+    "genre": ["Action-Adventure", "Platform"],
+    "knownFacts": [
+      "Released to mark the 10th anniversary of the original 1996 game.",
+      "Originally a collaboration with Buzz Monkey Software before Crystal Dynamics took full control.",
+      "Deepened Lara's conflict with Jacqueline Natla and expanded her motivation.",
+      "The adrenaline dodge mechanic was introduced for boss encounters.",
+      "Levels reinterpret rather than recreate original rooms with Legend-era movement.",
+      "Bridges the Legend and Underworld entries in the Crystal Dynamics trilogy."
+    ]
+  },
+  {
+    "slug": "tomb-raider-underworld",
+    "title": "Tomb Raider: Underworld",
+    "releaseDate": "2008-11-18",
+    "developer": "Crystal Dynamics",
+    "publisher": "Eidos Interactive",
+    "engine": "Crystal Engine (updated)",
+    "director": null,
+    "producer": null,
+    "platforms": ["PC", "PlayStation 3", "Xbox 360", "Wii", "PlayStation 2"],
+    "genre": ["Action-Adventure", "Platform"],
+    "knownFacts": [
+      "Concludes the Legend trilogy, resolving storylines from both Legend and Anniversary.",
+      "Thailand was widely praised as a visual high point of the series.",
+      "Features a Lara doppelganger created by Natla.",
+      "Downloadable content episodes Beneath the Ashes and Lara's Shadow extended the story on Xbox 360.",
+      "Sold approximately 2.6 million units but was considered a commercial underperformance.",
+      "Introduced more physics-based puzzle interactions and climbing mechanics."
+    ]
+  },
+  {
+    "slug": "tomb-raider-2013",
+    "title": "Tomb Raider",
+    "releaseDate": "2013-03-05",
+    "developer": "Crystal Dynamics",
+    "publisher": "Square Enix",
+    "engine": "Foundation Engine",
+    "director": "Noah Hughes",
+    "producer": null,
+    "platforms": ["PC", "PlayStation 3", "Xbox 360", "PlayStation 4", "Xbox One"],
+    "genre": ["Action-Adventure", "Survival"],
+    "knownFacts": [
+      "Origin story reboot; begins the Survivor trilogy.",
+      "Yamatai is a fictional island based loosely on historical Japan.",
+      "Over 11 million copies sold by 2016.",
+      "Used performance capture for Camilla Luddington as Lara.",
+      "Optional tombs were introduced as compact side-puzzle areas.",
+      "Multiplayer mode was included but later considered a low point of the release."
+    ]
+  },
+  {
+    "slug": "rise-of-the-tomb-raider",
+    "title": "Rise of the Tomb Raider",
+    "releaseDate": "2015-11-10",
+    "developer": "Crystal Dynamics",
+    "publisher": "Square Enix",
+    "engine": "Foundation Engine (updated)",
+    "director": "Brian Horton",
+    "producer": null,
+    "platforms": ["PC", "Xbox 360", "Xbox One", "PlayStation 4"],
+    "genre": ["Action-Adventure", "Survival"],
+    "knownFacts": [
+      "Timed exclusive on Xbox One before releasing on PlayStation 4.",
+      "Kitezh draws from the Russian legend of a submerged holy city.",
+      "Significantly expanded the optional challenge tomb system.",
+      "Over 7 million copies sold by 2018.",
+      "Blood Ties DLC added first-person exploration of Croft Manor.",
+      "Features Trinity as the primary antagonistic organization throughout the Survivor trilogy."
+    ]
+  },
+  {
+    "slug": "shadow-of-the-tomb-raider",
+    "title": "Shadow of the Tomb Raider",
+    "releaseDate": "2018-09-14",
+    "developer": "Eidos-Montréal",
+    "publisher": "Square Enix",
+    "engine": "Foundation Engine (updated)",
+    "director": "Daniel Bisson",
+    "producer": null,
+    "platforms": ["PC", "PlayStation 4", "Xbox One"],
+    "genre": ["Action-Adventure", "Stealth"],
+    "knownFacts": [
+      "First main Tomb Raider game developed by Eidos-Montréal rather than Crystal Dynamics.",
+      "Paititi is the largest hub area in the Survivor trilogy.",
+      "Draws from Mayan and Aztec mythology for its apocalypse narrative.",
+      "Introduced expanded difficulty sliders for combat, exploration, and puzzles independently.",
+      "Underwater traversal received the most emphasis of any entry in the trilogy.",
+      "Concludes the Survivor trilogy arc and Lara's conflict with Trinity."
+    ]
+  }
+]

@@ -12,7 +12,8 @@
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "content:import": "tsx scripts/import-games.ts",
-    "content:export": "tsx scripts/export-games.ts"
+    "content:export": "tsx scripts/export-games.ts",
+    "research:generate": "tsx scripts/generate-research.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

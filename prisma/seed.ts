@@ -116,12 +116,16 @@ const platforms = [
   "Xbox",
   "Xbox 360",
   "Xbox One",
+  "Xbox Series X/S",
   "Dreamcast",
   "Sega Saturn",
   "GameCube",
   "Wii",
   "PSP",
-  "Nintendo Switch"
+  "Nintendo Switch",
+  "Nintendo Switch 2",
+  "Android",
+  "iOS"
 ].map((name) => ({
   name,
   slug: name.toLowerCase().replaceAll(" ", "-")
