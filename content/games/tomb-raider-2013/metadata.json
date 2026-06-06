@@ -1,0 +1,21 @@
+{
+  "slug": "tomb-raider-2013",
+  "releaseDate": "2013-03-05",
+  "platforms": [
+    "Xbox One",
+    "PlayStation 4",
+    "Xbox 360",
+    "PlayStation 3",
+    "PC"
+  ],
+  "coverImage": "/images/midas-palace.png",
+  "heroImage": "/images/midas-palace.png",
+  "timeline": [
+    {
+      "year": 2013,
+      "title": "Tomb Raider release",
+      "description": "A survival origin story on Yamatai, where Lara becomes the explorer fans know.",
+      "eventDate": "2013-03-05"
+    }
+  ]
+}

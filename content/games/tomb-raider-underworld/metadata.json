@@ -1,0 +1,21 @@
+{
+  "slug": "tomb-raider-underworld",
+  "releaseDate": "2008-11-18",
+  "platforms": [
+    "PlayStation 2",
+    "Wii",
+    "Xbox 360",
+    "PlayStation 3",
+    "PC"
+  ],
+  "coverImage": "/images/midas-palace.png",
+  "heroImage": "/images/midas-palace.png",
+  "timeline": [
+    {
+      "year": 2008,
+      "title": "Tomb Raider: Underworld release",
+      "description": "A mythic descent through Norse ruins, ancient machinery, and the truth behind Lara's family mystery.",
+      "eventDate": "2008-11-18"
+    }
+  ]
+}

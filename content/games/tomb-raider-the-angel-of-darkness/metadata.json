@@ -1,0 +1,18 @@
+{
+  "slug": "tomb-raider-the-angel-of-darkness",
+  "releaseDate": "2003-06-20",
+  "platforms": [
+    "PC",
+    "PlayStation 2"
+  ],
+  "coverImage": "/images/midas-palace.png",
+  "heroImage": "/images/midas-palace.png",
+  "timeline": [
+    {
+      "year": 2003,
+      "title": "Tomb Raider: The Angel of Darkness release",
+      "description": "A darker investigation through Paris and Prague, with Lara framed and hunted.",
+      "eventDate": "2003-06-20"
+    }
+  ]
+}

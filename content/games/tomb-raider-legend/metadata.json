@@ -1,0 +1,22 @@
+{
+  "slug": "tomb-raider-legend",
+  "releaseDate": "2006-04-07",
+  "platforms": [
+    "PSP",
+    "GameCube",
+    "Xbox 360",
+    "Xbox",
+    "PlayStation 2",
+    "PC"
+  ],
+  "coverImage": "/images/midas-palace.png",
+  "heroImage": "/images/midas-palace.png",
+  "timeline": [
+    {
+      "year": 2006,
+      "title": "Tomb Raider: Legend release",
+      "description": "A fast-moving search for Excalibur fragments and the mystery of Lara's mother.",
+      "eventDate": "2006-04-07"
+    }
+  ]
+}

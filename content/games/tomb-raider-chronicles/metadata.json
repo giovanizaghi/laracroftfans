@@ -1,0 +1,19 @@
+{
+  "slug": "tomb-raider-chronicles",
+  "releaseDate": "2000-11-17",
+  "platforms": [
+    "Dreamcast",
+    "PlayStation",
+    "PC"
+  ],
+  "coverImage": "/images/midas-palace.png",
+  "heroImage": "/images/midas-palace.png",
+  "timeline": [
+    {
+      "year": 2000,
+      "title": "Tomb Raider Chronicles release",
+      "description": "A set of remembered expeditions told by Lara's allies after her disappearance.",
+      "eventDate": "2000-11-17"
+    }
+  ]
+}

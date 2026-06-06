@@ -10,7 +10,9 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "prisma:generate": "prisma generate",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "content:import": "tsx scripts/import-games.ts",
+    "content:export": "tsx scripts/export-games.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

@@ -1,0 +1,18 @@
+{
+  "slug": "tomb-raider-iii",
+  "releaseDate": "1998-11-20",
+  "platforms": [
+    "PlayStation",
+    "PC"
+  ],
+  "coverImage": "/images/midas-palace.png",
+  "heroImage": "/images/midas-palace.png",
+  "timeline": [
+    {
+      "year": 1998,
+      "title": "Tomb Raider III release",
+      "description": "A hunt for meteorite artifacts through India, London, Nevada, the South Pacific, and Antarctica.",
+      "eventDate": "1998-11-20"
+    }
+  ]
+}

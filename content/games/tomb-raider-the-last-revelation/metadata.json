@@ -1,0 +1,19 @@
+{
+  "slug": "tomb-raider-the-last-revelation",
+  "releaseDate": "1999-11-22",
+  "platforms": [
+    "Dreamcast",
+    "PlayStation",
+    "PC"
+  ],
+  "coverImage": "/images/midas-palace.png",
+  "heroImage": "/images/midas-palace.png",
+  "timeline": [
+    {
+      "year": 1999,
+      "title": "Tomb Raider: The Last Revelation release",
+      "description": "An Egyptian journey through temples, tombs, and the unleashed danger of Set.",
+      "eventDate": "1999-11-22"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "tomb-raider-anniversary",
+  "releaseDate": "2007-06-01",
+  "platforms": [
+    "PSP",
+    "Wii",
+    "Xbox 360",
+    "PlayStation 2",
+    "PC"
+  ],
+  "coverImage": "/images/midas-palace.png",
+  "heroImage": "/images/midas-palace.png",
+  "timeline": [
+    {
+      "year": 2007,
+      "title": "Tomb Raider: Anniversary release",
+      "description": "A reimagining of Lara's original Scion expedition with modern traversal and expanded mythology.",
+      "eventDate": "2007-06-01"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "tomb-raider-1996",
+  "releaseDate": "1996-10-25",
+  "platforms": [
+    "Sega Saturn",
+    "PlayStation",
+    "PC"
+  ],
+  "coverImage": "/images/midas-palace.png",
+  "heroImage": "/images/midas-palace.png",
+  "timeline": [
+    {
+      "year": 1996,
+      "title": "Tomb Raider release",
+      "description": "Lara Croft's first expedition through lost cities, ancient tombs, and the mystery of the Scion.",
+      "eventDate": "1996-10-25"
+    }
+  ]
+}
