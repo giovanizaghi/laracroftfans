@@ -122,7 +122,8 @@ function mapGame(game: GameRecord, index = 0, locale = "en"): ArchiveGame {
       order: level.sortOrder,
       region: translated.region,
       secretCount: level.secretCount,
-      isTraining: level.isTraining
+      isTraining: level.isTraining,
+      isBonus: level.isBonus
     };
   });
 

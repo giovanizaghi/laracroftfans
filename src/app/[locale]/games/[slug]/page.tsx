@@ -251,7 +251,9 @@ export default async function GameDetailPage({ params }: PageProps) {
                     meta={`${
                       level.isTraining
                         ? t("trainingLevel")
-                        : t("levelNumber", { number: level.order })
+                        : level.isBonus
+                          ? t("bonusLevel")
+                          : t("levelNumber", { number: level.order })
                     } · ${t("secretCount", { count: level.secretCount })}`}
                     note={level.note}
                     title={level.title}

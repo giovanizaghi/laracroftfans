@@ -33,6 +33,7 @@ export interface GameArchiveInput {
   counts: {
     campaignLevels: number;
     trainingLevels: number;
+    bonusLevels?: number;
     secrets: number;
     weapons: number;
   };
@@ -52,6 +53,7 @@ export interface GameArchiveInput {
     imageUrl?: string;
     secrets: number;
     training: boolean;
+    bonus?: boolean;
     status: EvidenceStatus;
     note?: string;
     translations: Record<
@@ -118,6 +120,8 @@ export interface GameArchiveInput {
       | "DINOSAUR"
       | "ATLANTEAN"
       | "SUPERNATURAL"
+      | "MUTANT"
+      | "MECHANICAL"
       | "HUMAN"
       | "BOSS";
     order: number;

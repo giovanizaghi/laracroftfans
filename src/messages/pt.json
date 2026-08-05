@@ -108,6 +108,7 @@
     "photoUnavailable": "Sem foto disponível",
     "galleryEmpty": "Nenhuma imagem foi adicionada à galeria ainda",
     "trainingLevel": "Nível de treinamento",
+    "bonusLevel": "Nível bônus",
     "levelNumber": "Nível {number}",
     "secretCount": "{count, plural, =0 {Nenhum segredo} one {# segredo} other {# segredos}}",
     "sources": "Fontes",

@@ -55,6 +55,8 @@ enum EnemyCategory {
   DINOSAUR
   ATLANTEAN
   SUPERNATURAL
+  MUTANT
+  MECHANICAL
   HUMAN
   BOSS
 }
@@ -101,6 +103,7 @@ model Game {
   engine             String               @default("")
   campaignLevelCount Int?
   trainingLevelCount Int?
+  bonusLevelCount    Int?
   secretCount        Int?
   weaponCount        Int?
   releaseDate        DateTime
@@ -193,6 +196,7 @@ model GameLevel {
   imageUrl       String                 @default("")
   secretCount    Int                    @default(0)
   isTraining     Boolean                @default(false)
+  isBonus        Boolean                @default(false)
   evidenceStatus EvidenceStatus         @default(CONFIRMED)
   note           String                 @default("")
   translations   GameLevelTranslation[]

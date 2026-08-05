@@ -18,6 +18,7 @@ export type ArchiveLevelCard = ArchiveEntityCard & {
   region: string;
   secretCount: number;
   isTraining: boolean;
+  isBonus: boolean;
 };
 
 export type ArchiveFactCard = {

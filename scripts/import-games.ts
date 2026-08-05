@@ -252,6 +252,7 @@ async function syncArchiveData(
       imageUrl: level.imageUrl ?? "",
       secretCount: level.secrets,
       isTraining: level.training,
+      isBonus: level.bonus ?? false,
       evidenceStatus: level.status,
       note: level.note ?? ""
     }))
@@ -654,6 +655,7 @@ async function importGame(
         legacyImage: archive.images.legacy,
         campaignLevelCount: archive.counts.campaignLevels,
         trainingLevelCount: archive.counts.trainingLevels,
+        bonusLevelCount: archive.counts.bonusLevels ?? 0,
         secretCount: archive.counts.secrets,
         weaponCount: archive.counts.weapons
       }

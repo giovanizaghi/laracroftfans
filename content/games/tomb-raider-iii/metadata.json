@@ -1,18 +1,45 @@
 {
   "slug": "tomb-raider-iii",
-  "releaseDate": "1998-11-20",
-  "platforms": [
-    "PlayStation",
-    "PC"
-  ],
-  "coverImage": "/images/midas-palace.png",
-  "heroImage": "/images/midas-palace.png",
+  "releaseDate": "1998-11-23",
+  "platforms": ["Windows", "PlayStation"],
+  "coverImage": "",
+  "heroImage": "",
   "timeline": [
     {
       "year": 1998,
-      "title": "Tomb Raider III release",
-      "description": "A hunt for meteorite artifacts through India, London, Nevada, the South Pacific, and Antarctica.",
-      "eventDate": "1998-11-20"
+      "title": "Tomb Raider III: Adventures of Lara Croft",
+      "description": "Lara hunts four meteorite artifacts across five connected adventures and confronts Dr. Willard beneath Antarctica.",
+      "eventDate": "1998-11-23",
+      "translations": {
+        "pt": {
+          "title": "Tomb Raider III: Adventures of Lara Croft",
+          "description": "Lara caça quatro artefatos de meteorito em cinco aventuras conectadas e enfrenta o Dr. Willard sob a Antártida."
+        }
+      }
+    },
+    {
+      "year": 2000,
+      "title": "The Lost Artifact expansion",
+      "description": "A separate six-level expansion continues the meteorite story with the Hand of Rathmore.",
+      "eventDate": "2000-03-08",
+      "translations": {
+        "pt": {
+          "title": "Expansão The Lost Artifact",
+          "description": "Uma expansão separada de seis níveis continua a história do meteorito com a Mão de Rathmore."
+        }
+      }
+    },
+    {
+      "year": 2024,
+      "title": "Tomb Raider I-III Remastered",
+      "description": "The collection remasters Tomb Raider III and The Lost Artifact while preserving them as distinct campaigns.",
+      "eventDate": "2024-02-14",
+      "translations": {
+        "pt": {
+          "title": "Tomb Raider I-III Remastered",
+          "description": "A coletânea remasteriza Tomb Raider III e The Lost Artifact, mantendo-os como campanhas distintas."
+        }
+      }
     }
   ]
 }
