@@ -20,6 +20,7 @@ export function AncientButton({
     <Link
       className={cn("ancient-button", `ancient-button-${variant}`, className)}
       href={href}
+      prefetch={false}
       {...props}
     >
       {children}

@@ -1,19 +1,21 @@
 {
   "slug": "tomb-raider-1996",
   "releaseDate": "1996-10-25",
-  "platforms": [
-    "Sega Saturn",
-    "PlayStation",
-    "PC"
-  ],
+  "platforms": ["Sega Saturn", "PlayStation", "MS-DOS"],
   "coverImage": "/images/midas-palace.png",
   "heroImage": "/images/midas-palace.png",
   "timeline": [
     {
       "year": 1996,
       "title": "Tomb Raider release",
-      "description": "Lara Croft's first expedition through lost cities, ancient tombs, and the mystery of the Scion.",
-      "eventDate": "1996-10-25"
+      "description": "The European Sega Saturn release begins Lara Croft's original expedition for the Atlantean Scion.",
+      "eventDate": "1996-10-25",
+      "translations": {
+        "pt": {
+          "title": "Lançamento de Tomb Raider",
+          "description": "A versão europeia para Sega Saturn inicia a expedição original de Lara Croft pelo Scion atlante."
+        }
+      }
     }
   ]
 }

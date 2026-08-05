@@ -96,9 +96,47 @@
     "back": "Back to Games",
     "overview": "Overview",
     "story": "Story",
+    "gameplay": "Gameplay",
     "development": "Development",
+    "legacy": "Legacy",
+    "characters": "Characters",
+    "locations": "Locations",
+    "levels": "Levels",
+    "factCheck": "Fact Check",
     "trivia": "Trivia",
-    "gallery": "Gallery"
+    "gallery": "Gallery",
+    "photoUnavailable": "No photo available",
+    "galleryEmpty": "No gallery images have been added yet",
+    "trainingLevel": "Training level",
+    "levelNumber": "Level {number}",
+    "secretCount": "{count, plural, =0 {No secrets} one {# secret} other {# secrets}}",
+    "sources": "Sources",
+    "characterRoles": {
+      "protagonist": "Protagonist",
+      "antagonist": "Antagonist",
+      "supporting": "Supporting character",
+      "rival": "Rival raider",
+      "historical": "Historical figure",
+      "mercenary": "Mercenary",
+      "creature": "Creature"
+    },
+    "locationKinds": {
+      "training": "Training location",
+      "cinematic": "Story location",
+      "campaignRegion": "Campaign region"
+    },
+    "factStatuses": {
+      "confirmed": "Confirmed fact",
+      "documentedSecondary": "Documented by secondary sources",
+      "draftOnly": "Draft material only",
+      "laterContinuity": "Later continuity",
+      "fanTerm": "Fan term",
+      "myth": "Myth",
+      "interpretation": "Interpretation",
+      "sourceConflict": "Sources conflict",
+      "qualified": "Qualified claim",
+      "unsupported": "Unsupported claim"
+    }
   },
   "timelinePage": {
     "meta": {

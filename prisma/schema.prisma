@@ -16,24 +16,113 @@ enum MediaType {
   PROMOTIONAL
 }
 
+enum EvidenceStatus {
+  CONFIRMED
+  DOCUMENTED_SECONDARY
+  DRAFT_ONLY
+  LATER_CONTINUITY
+  FAN_TERM
+  MYTH
+  INTERPRETATION
+  SOURCE_CONFLICT
+  QUALIFIED
+  UNSUPPORTED
+}
+
+enum GameCharacterRole {
+  PROTAGONIST
+  ANTAGONIST
+  SUPPORTING
+  RIVAL
+  HISTORICAL
+  MERCENARY
+  CREATURE
+}
+
+enum LocationKind {
+  TRAINING
+  CINEMATIC
+  CAMPAIGN_REGION
+}
+
+enum AmmunitionType {
+  UNLIMITED
+  FINITE
+}
+
+enum EnemyCategory {
+  WILDLIFE
+  DINOSAUR
+  ATLANTEAN
+  HUMAN
+  BOSS
+}
+
+enum SourceType {
+  OFFICIAL
+  PRIMARY_DOCUMENT
+  PRIMARY_DRAFT_DOCUMENT
+  PRESERVED_PRIMARY_MATERIAL
+  OFFICIAL_RETROSPECTIVE
+  DEVELOPER_INTERVIEW
+  VERIFIED_COMMUNITY_REFERENCE
+  SECONDARY_REFERENCE
+  CONTEMPORARY_REVIEW
+  REVIEW_AGGREGATE
+}
+
 model Game {
-  id               String               @id @default(cuid())
-  slug             String               @unique
-  title            String
-  shortDescription String
-  fullDescription  String
-  story            String
-  development      String
-  trivia           String[]
-  releaseDate      DateTime
-  coverImage       String
-  heroImage        String
-  createdAt        DateTime             @default(now())
-  updatedAt        DateTime             @updatedAt
-  mediaAssets      MediaAsset[]
-  platforms        GamePlatform[]
-  timelineEvents   TimelineEvent[]
-  translations     GameTranslation[]
+  id                 String               @id @default(cuid())
+  slug               String               @unique
+  title              String
+  shortDescription   String
+  fullDescription    String
+  story              String
+  gameplay           String               @default("")
+  development        String
+  legacy             String               @default("")
+  characters         String               @default("")
+  locations          String               @default("")
+  levels             String               @default("")
+  factCheck          String               @default("")
+  trivia             String[]
+  overviewImage      String               @default("")
+  storyImage         String               @default("")
+  gameplayImage      String               @default("")
+  developmentImage   String               @default("")
+  legacyImage        String               @default("")
+  scope              String               @default("")
+  developer          String               @default("")
+  originalPublisher  String               @default("")
+  genre              String               @default("")
+  perspective        String               @default("")
+  gameMode           String               @default("")
+  engine             String               @default("")
+  campaignLevelCount Int?
+  trainingLevelCount Int?
+  secretCount        Int?
+  weaponCount        Int?
+  releaseDate        DateTime
+  coverImage         String
+  heroImage          String
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  mediaAssets        MediaAsset[]
+  platforms          GamePlatform[]
+  releases           GameRelease[]
+  gameLevels         GameLevel[]
+  gameCharacters     GameCharacter[]
+  gameLocations      GameLocation[]
+  gameArtifacts      GameArtifact[]
+  gameWeapons        GameWeapon[]
+  gameEnemies        GameEnemy[]
+  credits            GameCredit[]
+  contentRatings     GameContentRating[]
+  sources            GameSource[]
+  facts              GameFact[]
+  relatedReleases    GameRelatedRelease[]
+  timelineEvents     TimelineEvent[]
+  translations       GameTranslation[]
 
   @@index([slug])
   @@index([releaseDate])
@@ -48,7 +137,13 @@ model GameTranslation {
   shortDescription String
   fullDescription  String
   story            String
+  gameplay         String   @default("")
   development      String
+  legacy           String   @default("")
+  characters       String   @default("")
+  locations        String   @default("")
+  levels           String   @default("")
+  factCheck        String   @default("")
   trivia           String[]
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
@@ -62,8 +157,65 @@ model Platform {
   name      String
   slug      String         @unique
   games     GamePlatform[]
+  releases  GameRelease[]
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
+}
+
+model GameRelease {
+  id             String         @id @default(cuid())
+  gameId         String
+  platformId     String
+  game           Game           @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  platform       Platform       @relation(fields: [platformId], references: [id], onDelete: Restrict)
+  region         String
+  releaseDate    DateTime
+  regionalTitle  String?
+  evidenceStatus EvidenceStatus @default(CONFIRMED)
+  note           String         @default("")
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  @@unique([gameId, platformId, region])
+  @@index([gameId, releaseDate])
+  @@index([platformId])
+}
+
+model GameLevel {
+  id             String                 @id @default(cuid())
+  gameId         String
+  game           Game                   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  sortOrder      Int
+  name           String
+  region         String
+  description    String                 @default("")
+  imageUrl       String                 @default("")
+  secretCount    Int                    @default(0)
+  isTraining     Boolean                @default(false)
+  evidenceStatus EvidenceStatus         @default(CONFIRMED)
+  note           String                 @default("")
+  translations   GameLevelTranslation[]
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+
+  @@unique([gameId, sortOrder])
+  @@index([gameId])
+}
+
+model GameLevelTranslation {
+  id          String    @id @default(cuid())
+  levelId     String
+  level       GameLevel @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  locale      String
+  name        String
+  region      String
+  description String    @default("")
+  note        String    @default("")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([levelId, locale])
+  @@index([locale])
 }
 
 model GamePlatform {
@@ -108,15 +260,15 @@ model MediaAssetTranslation {
 }
 
 model TimelineEvent {
-  id           String                       @id @default(cuid())
+  id           String                     @id @default(cuid())
   year         Int
   title        String
   description  String
   eventDate    DateTime
   gameId       String?
-  game         Game?                        @relation(fields: [gameId], references: [id], onDelete: SetNull)
-  createdAt    DateTime                     @default(now())
-  updatedAt    DateTime                     @updatedAt
+  game         Game?                      @relation(fields: [gameId], references: [id], onDelete: SetNull)
+  createdAt    DateTime                   @default(now())
+  updatedAt    DateTime                   @updatedAt
   translations TimelineEventTranslation[]
 
   @@index([year])
@@ -139,16 +291,33 @@ model TimelineEventTranslation {
 }
 
 model Character {
-  id           String                  @id @default(cuid())
-  slug         String                  @unique
+  id           String                 @id @default(cuid())
+  slug         String                 @unique
   name         String
   description  String
   imageUrl     String
-  createdAt    DateTime                @default(now())
-  updatedAt    DateTime                @updatedAt
+  createdAt    DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
   translations CharacterTranslation[]
+  games        GameCharacter[]
 
   @@index([slug])
+}
+
+model GameCharacter {
+  gameId         String
+  characterId    String
+  game           Game              @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  character      Character         @relation(fields: [characterId], references: [id], onDelete: Restrict)
+  role           GameCharacterRole
+  sortOrder      Int
+  evidenceStatus EvidenceStatus    @default(CONFIRMED)
+  note           String            @default("")
+  createdAt      DateTime          @default(now())
+
+  @@id([gameId, characterId])
+  @@unique([gameId, sortOrder])
+  @@index([characterId])
 }
 
 model CharacterTranslation {
@@ -174,8 +343,25 @@ model Location {
   createdAt    DateTime              @default(now())
   updatedAt    DateTime              @updatedAt
   translations LocationTranslation[]
+  games        GameLocation[]
 
   @@index([slug])
+}
+
+model GameLocation {
+  gameId         String
+  locationId     String
+  game           Game           @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  location       Location       @relation(fields: [locationId], references: [id], onDelete: Restrict)
+  kind           LocationKind
+  sortOrder      Int
+  evidenceStatus EvidenceStatus @default(CONFIRMED)
+  note           String         @default("")
+  createdAt      DateTime       @default(now())
+
+  @@id([gameId, locationId])
+  @@unique([gameId, sortOrder])
+  @@index([locationId])
 }
 
 model LocationTranslation {
@@ -189,5 +375,257 @@ model LocationTranslation {
   updatedAt   DateTime @updatedAt
 
   @@unique([locationId, locale])
+  @@index([locale])
+}
+
+model Artifact {
+  id           String                @id @default(cuid())
+  slug         String                @unique
+  name         String
+  description  String
+  translations ArtifactTranslation[]
+  games        GameArtifact[]
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+
+  @@index([slug])
+}
+
+model ArtifactTranslation {
+  id          String   @id @default(cuid())
+  artifactId  String
+  artifact    Artifact @relation(fields: [artifactId], references: [id], onDelete: Cascade)
+  locale      String
+  name        String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([artifactId, locale])
+  @@index([locale])
+}
+
+model GameArtifact {
+  gameId         String
+  artifactId     String
+  game           Game           @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  artifact       Artifact       @relation(fields: [artifactId], references: [id], onDelete: Restrict)
+  role           String
+  sortOrder      Int
+  evidenceStatus EvidenceStatus @default(CONFIRMED)
+  note           String         @default("")
+  createdAt      DateTime       @default(now())
+
+  @@id([gameId, artifactId])
+  @@unique([gameId, sortOrder])
+  @@index([artifactId])
+}
+
+model Weapon {
+  id           String              @id @default(cuid())
+  slug         String              @unique
+  name         String
+  description  String
+  translations WeaponTranslation[]
+  games        GameWeapon[]
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+
+  @@index([slug])
+}
+
+model WeaponTranslation {
+  id          String   @id @default(cuid())
+  weaponId    String
+  weapon      Weapon   @relation(fields: [weaponId], references: [id], onDelete: Cascade)
+  locale      String
+  name        String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([weaponId, locale])
+  @@index([locale])
+}
+
+model GameWeapon {
+  gameId         String
+  weaponId       String
+  game           Game           @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  weapon         Weapon         @relation(fields: [weaponId], references: [id], onDelete: Restrict)
+  ammunitionType AmmunitionType
+  ammunitionNote String         @default("")
+  sortOrder      Int
+  evidenceStatus EvidenceStatus @default(CONFIRMED)
+  note           String         @default("")
+  createdAt      DateTime       @default(now())
+
+  @@id([gameId, weaponId])
+  @@unique([gameId, sortOrder])
+  @@index([weaponId])
+}
+
+model Enemy {
+  id           String             @id @default(cuid())
+  slug         String             @unique
+  name         String
+  description  String
+  category     EnemyCategory
+  translations EnemyTranslation[]
+  games        GameEnemy[]
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  @@index([slug])
+}
+
+model EnemyTranslation {
+  id          String   @id @default(cuid())
+  enemyId     String
+  enemy       Enemy    @relation(fields: [enemyId], references: [id], onDelete: Cascade)
+  locale      String
+  name        String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([enemyId, locale])
+  @@index([locale])
+}
+
+model GameEnemy {
+  gameId         String
+  enemyId        String
+  game           Game           @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  enemy          Enemy          @relation(fields: [enemyId], references: [id], onDelete: Restrict)
+  sortOrder      Int
+  evidenceStatus EvidenceStatus @default(CONFIRMED)
+  note           String         @default("")
+  createdAt      DateTime       @default(now())
+
+  @@id([gameId, enemyId])
+  @@unique([gameId, sortOrder])
+  @@index([enemyId])
+}
+
+model GameCredit {
+  id          String   @id @default(cuid())
+  gameId      String
+  game        Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  role        String
+  personName  String
+  groupOrder  Int
+  personOrder Int
+  createdAt   DateTime @default(now())
+
+  @@unique([gameId, role, personName])
+  @@index([gameId, groupOrder, personOrder])
+}
+
+model GameContentRating {
+  id             String         @id @default(cuid())
+  gameId         String
+  game           Game           @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  board          String
+  rating         String
+  descriptors    String[]
+  evidenceStatus EvidenceStatus @default(CONFIRMED)
+  note           String         @default("")
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  @@unique([gameId, board])
+  @@index([gameId])
+}
+
+model GameSource {
+  id         String           @id @default(cuid())
+  gameId     String
+  game       Game             @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  sourceKey  String
+  title      String
+  url        String
+  sourceType SourceType
+  note       String           @default("")
+  accessedOn DateTime?
+  factLinks  GameFactSource[]
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+
+  @@unique([gameId, sourceKey])
+  @@index([gameId])
+}
+
+model GameFact {
+  id             String                @id @default(cuid())
+  gameId         String
+  game           Game                  @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  slug           String
+  sortOrder      Int
+  evidenceStatus EvidenceStatus
+  claim          String
+  verdict        String
+  translations   GameFactTranslation[]
+  sourceLinks    GameFactSource[]
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
+
+  @@unique([gameId, slug])
+  @@unique([gameId, sortOrder])
+  @@index([gameId, evidenceStatus])
+}
+
+model GameFactTranslation {
+  id        String   @id @default(cuid())
+  factId    String
+  fact      GameFact @relation(fields: [factId], references: [id], onDelete: Cascade)
+  locale    String
+  claim     String
+  verdict   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([factId, locale])
+  @@index([locale])
+}
+
+model GameFactSource {
+  factId    String
+  sourceId  String
+  fact      GameFact   @relation(fields: [factId], references: [id], onDelete: Cascade)
+  source    GameSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  createdAt DateTime   @default(now())
+
+  @@id([factId, sourceId])
+  @@index([sourceId])
+}
+
+model GameRelatedRelease {
+  id           String                          @id @default(cuid())
+  gameId       String
+  game         Game                            @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  title        String
+  releaseYear  Int
+  relationship String
+  sortOrder    Int
+  translations GameRelatedReleaseTranslation[]
+  createdAt    DateTime                        @default(now())
+  updatedAt    DateTime                        @updatedAt
+
+  @@unique([gameId, title])
+  @@unique([gameId, sortOrder])
+  @@index([gameId])
+}
+
+model GameRelatedReleaseTranslation {
+  id               String             @id @default(cuid())
+  relatedReleaseId String
+  relatedRelease   GameRelatedRelease @relation(fields: [relatedReleaseId], references: [id], onDelete: Cascade)
+  locale           String
+  relationship     String
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+
+  @@unique([relatedReleaseId, locale])
   @@index([locale])
 }

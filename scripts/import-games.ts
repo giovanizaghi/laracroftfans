@@ -1,6 +1,9 @@
 import { PrismaClient } from "@prisma/client";
+import { randomUUID } from "node:crypto";
 import * as fs from "node:fs";
 import * as path from "node:path";
+import { pathToFileURL } from "node:url";
+import type { GameArchiveInput } from "../content/archive-types";
 
 const prisma = new PrismaClient();
 const CONTENT_DIR = path.resolve(__dirname, "../content/games");
@@ -17,7 +20,13 @@ interface GameFrontmatter {
 interface GameMarkdownContent {
   frontmatter: GameFrontmatter;
   story: string;
+  gameplay: string;
   development: string;
+  legacy: string;
+  characters: string;
+  locations: string;
+  levels: string;
+  factCheck: string;
   trivia: string[];
   fullDescription: string;
 }
@@ -27,6 +36,7 @@ interface TimelineEntry {
   title: string;
   description: string;
   eventDate: string;
+  translations?: Record<string, { title: string; description: string }>;
 }
 
 interface GameMetadata {
@@ -40,7 +50,10 @@ interface GameMetadata {
 
 // --- Parsers ---
 
-function parseFrontmatter(raw: string): { frontmatter: Record<string, string>; body: string } {
+function parseFrontmatter(raw: string): {
+  frontmatter: Record<string, string>;
+  body: string;
+} {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
   if (!match) {
     throw new Error("Invalid frontmatter format");
@@ -55,7 +68,10 @@ function parseFrontmatter(raw: string): { frontmatter: Record<string, string>; b
     const key = line.slice(0, colonIdx).trim();
     let value = line.slice(colonIdx + 1).trim();
     // Strip surrounding quotes
-    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
       value = value.slice(1, -1);
     }
     frontmatter[key] = value;
@@ -64,7 +80,9 @@ function parseFrontmatter(raw: string): { frontmatter: Record<string, string>; b
   return { frontmatter, body: match[2] };
 }
 
-function parseMarkdownSections(body: string): { story: string; development: string; trivia: string[]; fullDescription: string } {
+function parseMarkdownSections(
+  body: string
+): Omit<GameMarkdownContent, "frontmatter"> {
   const sections: Record<string, string> = {};
   let currentSection = "__intro";
   const lines = body.split("\n");
@@ -92,8 +110,14 @@ function parseMarkdownSections(body: string): { story: string; development: stri
   return {
     fullDescription: (sections["__intro"] || "").trim(),
     story: (sections["story"] || "").trim(),
+    gameplay: (sections["gameplay"] || "").trim(),
     development: (sections["development"] || "").trim(),
-    trivia,
+    legacy: (sections["legacy"] || "").trim(),
+    characters: (sections["characters"] || "").trim(),
+    locations: (sections["locations"] || "").trim(),
+    levels: (sections["levels"] || "").trim(),
+    factCheck: (sections["fact check"] || "").trim(),
+    trivia
   };
 }
 
@@ -113,9 +137,9 @@ function parseGameMarkdown(filePath: string): GameMarkdownContent {
   return {
     frontmatter: {
       title: frontmatter.title,
-      shortDescription: frontmatter.shortDescription,
+      shortDescription: frontmatter.shortDescription
     },
-    ...sections,
+    ...sections
   };
 }
 
@@ -129,31 +153,418 @@ function readMetadata(dirPath: string): GameMetadata {
   const data = JSON.parse(raw) as GameMetadata;
 
   if (!data.slug) throw new Error(`Missing 'slug' in ${metaPath}`);
-  if (!data.releaseDate) throw new Error(`Missing 'releaseDate' in ${metaPath}`);
-  if (!data.platforms || !Array.isArray(data.platforms)) throw new Error(`Missing 'platforms' in ${metaPath}`);
+  if (!data.releaseDate)
+    throw new Error(`Missing 'releaseDate' in ${metaPath}`);
+  if (!data.platforms || !Array.isArray(data.platforms))
+    throw new Error(`Missing 'platforms' in ${metaPath}`);
 
   return data;
 }
 
+async function readArchiveData(
+  dirPath: string
+): Promise<GameArchiveInput | null> {
+  const archivePath = path.join(dirPath, "archive.ts");
+  if (!fs.existsSync(archivePath)) return null;
+
+  const archiveModule = (await import(pathToFileURL(archivePath).href)) as {
+    gameArchive?: GameArchiveInput;
+  };
+  if (!archiveModule.gameArchive) {
+    throw new Error(`Missing 'gameArchive' export in ${archivePath}`);
+  }
+
+  return archiveModule.gameArchive;
+}
+
 // --- Validation ---
 
-function validateGameContent(slug: string, content: GameMarkdownContent): string[] {
+function validateGameContent(
+  slug: string,
+  content: GameMarkdownContent
+): string[] {
   const errors: string[] = [];
 
   if (!content.frontmatter.title) errors.push(`[${slug}] Missing title`);
-  if (!content.frontmatter.shortDescription) errors.push(`[${slug}] Missing shortDescription`);
+  if (!content.frontmatter.shortDescription)
+    errors.push(`[${slug}] Missing shortDescription`);
   if (!content.story) errors.push(`[${slug}] Missing ## Story section`);
-  if (!content.development) errors.push(`[${slug}] Missing ## Development section`);
-  if (content.trivia.length === 0) errors.push(`[${slug}] Missing ## Trivia items`);
-  if (!content.fullDescription) errors.push(`[${slug}] Missing intro/fullDescription`);
+  if (!content.development)
+    errors.push(`[${slug}] Missing ## Development section`);
+  if (content.trivia.length === 0)
+    errors.push(`[${slug}] Missing ## Trivia items`);
+  if (!content.fullDescription)
+    errors.push(`[${slug}] Missing intro/fullDescription`);
 
   return errors;
 }
 
+async function syncArchiveData(
+  gameId: string,
+  archive: GameArchiveInput,
+  platformIdsByName: Map<string, string>
+) {
+  await prisma.gameFact.deleteMany({ where: { gameId } });
+  await prisma.gameSource.deleteMany({ where: { gameId } });
+  await prisma.gameRelatedRelease.deleteMany({ where: { gameId } });
+  await prisma.gameRelease.deleteMany({ where: { gameId } });
+  await prisma.gameLevel.deleteMany({ where: { gameId } });
+  await prisma.gameCharacter.deleteMany({ where: { gameId } });
+  await prisma.gameLocation.deleteMany({ where: { gameId } });
+  await prisma.gameArtifact.deleteMany({ where: { gameId } });
+  await prisma.gameWeapon.deleteMany({ where: { gameId } });
+  await prisma.gameEnemy.deleteMany({ where: { gameId } });
+  await prisma.gameCredit.deleteMany({ where: { gameId } });
+  await prisma.gameContentRating.deleteMany({ where: { gameId } });
+
+  await prisma.gameRelease.createMany({
+    data: archive.releases.map((release) => {
+      const platformId = platformIdsByName.get(release.platform);
+      if (!platformId) {
+        throw new Error(
+          `Archive release references unknown platform: ${release.platform}`
+        );
+      }
+      return {
+        gameId,
+        platformId,
+        region: release.region,
+        releaseDate: new Date(release.date),
+        regionalTitle: release.regionalTitle,
+        evidenceStatus: release.status,
+        note: release.note ?? ""
+      };
+    })
+  });
+
+  const levelsWithIds = archive.levels.map((level) => ({
+    ...level,
+    id: randomUUID()
+  }));
+  await prisma.gameLevel.createMany({
+    data: levelsWithIds.map((level) => ({
+      id: level.id,
+      gameId,
+      sortOrder: level.order,
+      name: level.name,
+      region: level.region,
+      description: level.description,
+      imageUrl: level.imageUrl ?? "",
+      secretCount: level.secrets,
+      isTraining: level.training,
+      evidenceStatus: level.status,
+      note: level.note ?? ""
+    }))
+  });
+  await prisma.gameLevelTranslation.createMany({
+    data: levelsWithIds.flatMap((level) =>
+      Object.entries(level.translations).map(([locale, translation]) => ({
+        levelId: level.id,
+        locale,
+        name: translation.name,
+        region: translation.region,
+        description: translation.description,
+        note: translation.note ?? ""
+      }))
+    )
+  });
+
+  await Promise.all(
+    archive.characters.map(async (entry) => {
+      const character = await prisma.character.upsert({
+        where: { slug: entry.slug },
+        update: {
+          name: entry.name,
+          description: entry.description,
+          imageUrl: entry.imageUrl ?? ""
+        },
+        create: {
+          slug: entry.slug,
+          name: entry.name,
+          description: entry.description,
+          imageUrl: entry.imageUrl ?? ""
+        }
+      });
+      await Promise.all(
+        Object.entries(entry.translations).map(([locale, translation]) =>
+          prisma.characterTranslation.upsert({
+            where: {
+              characterId_locale: { characterId: character.id, locale }
+            },
+            update: translation,
+            create: { characterId: character.id, locale, ...translation }
+          })
+        )
+      );
+      await prisma.gameCharacter.create({
+        data: {
+          gameId,
+          characterId: character.id,
+          role: entry.role,
+          sortOrder: entry.order,
+          evidenceStatus: entry.status,
+          note: entry.note ?? ""
+        }
+      });
+    })
+  );
+
+  await Promise.all(
+    archive.locations.map(async (entry) => {
+      const location = await prisma.location.upsert({
+        where: { slug: entry.slug },
+        update: {
+          name: entry.name,
+          description: entry.description,
+          imageUrl: entry.imageUrl ?? ""
+        },
+        create: {
+          slug: entry.slug,
+          name: entry.name,
+          description: entry.description,
+          imageUrl: entry.imageUrl ?? ""
+        }
+      });
+      await Promise.all(
+        Object.entries(entry.translations).map(([locale, translation]) =>
+          prisma.locationTranslation.upsert({
+            where: { locationId_locale: { locationId: location.id, locale } },
+            update: translation,
+            create: { locationId: location.id, locale, ...translation }
+          })
+        )
+      );
+      await prisma.gameLocation.create({
+        data: {
+          gameId,
+          locationId: location.id,
+          kind: entry.kind,
+          sortOrder: entry.order,
+          evidenceStatus: entry.status,
+          note: entry.note ?? ""
+        }
+      });
+    })
+  );
+
+  await Promise.all(
+    archive.artifacts.map(async (entry) => {
+      const artifact = await prisma.artifact.upsert({
+        where: { slug: entry.slug },
+        update: { name: entry.name, description: entry.description },
+        create: {
+          slug: entry.slug,
+          name: entry.name,
+          description: entry.description
+        }
+      });
+      await Promise.all(
+        Object.entries(entry.translations).map(([locale, translation]) =>
+          prisma.artifactTranslation.upsert({
+            where: { artifactId_locale: { artifactId: artifact.id, locale } },
+            update: translation,
+            create: { artifactId: artifact.id, locale, ...translation }
+          })
+        )
+      );
+      await prisma.gameArtifact.create({
+        data: {
+          gameId,
+          artifactId: artifact.id,
+          role: entry.role,
+          sortOrder: entry.order,
+          evidenceStatus: entry.status,
+          note: entry.note ?? ""
+        }
+      });
+    })
+  );
+
+  await Promise.all(
+    archive.weapons.map(async (entry) => {
+      const weapon = await prisma.weapon.upsert({
+        where: { slug: entry.slug },
+        update: { name: entry.name, description: entry.description },
+        create: {
+          slug: entry.slug,
+          name: entry.name,
+          description: entry.description
+        }
+      });
+      await Promise.all(
+        Object.entries(entry.translations).map(([locale, translation]) =>
+          prisma.weaponTranslation.upsert({
+            where: { weaponId_locale: { weaponId: weapon.id, locale } },
+            update: translation,
+            create: { weaponId: weapon.id, locale, ...translation }
+          })
+        )
+      );
+      await prisma.gameWeapon.create({
+        data: {
+          gameId,
+          weaponId: weapon.id,
+          ammunitionType: entry.ammunitionType,
+          ammunitionNote: entry.ammunitionNote,
+          sortOrder: entry.order,
+          evidenceStatus: entry.status,
+          note: entry.note ?? ""
+        }
+      });
+    })
+  );
+
+  await Promise.all(
+    archive.enemies.map(async (entry) => {
+      const enemy = await prisma.enemy.upsert({
+        where: { slug: entry.slug },
+        update: {
+          name: entry.name,
+          description: entry.description,
+          category: entry.category
+        },
+        create: {
+          slug: entry.slug,
+          name: entry.name,
+          description: entry.description,
+          category: entry.category
+        }
+      });
+      await Promise.all(
+        Object.entries(entry.translations).map(([locale, translation]) =>
+          prisma.enemyTranslation.upsert({
+            where: { enemyId_locale: { enemyId: enemy.id, locale } },
+            update: translation,
+            create: { enemyId: enemy.id, locale, ...translation }
+          })
+        )
+      );
+      await prisma.gameEnemy.create({
+        data: {
+          gameId,
+          enemyId: enemy.id,
+          sortOrder: entry.order,
+          evidenceStatus: entry.status,
+          note: entry.note ?? ""
+        }
+      });
+    })
+  );
+
+  await prisma.gameCredit.createMany({
+    data: archive.credits.flatMap((credit, groupOrder) =>
+      credit.names.map((personName, personOrder) => ({
+        gameId,
+        role: credit.role,
+        personName,
+        groupOrder: groupOrder + 1,
+        personOrder: personOrder + 1
+      }))
+    )
+  });
+
+  await prisma.gameContentRating.createMany({
+    data: archive.contentRatings.map((rating) => ({
+      gameId,
+      board: rating.board,
+      rating: rating.rating,
+      descriptors: rating.descriptors,
+      evidenceStatus: rating.status,
+      note: rating.note ?? ""
+    }))
+  });
+
+  const sourceIdsByKey = new Map<string, string>();
+  const sourcesWithIds = archive.sources.map((source) => ({
+    ...source,
+    id: randomUUID()
+  }));
+  for (const source of sourcesWithIds) {
+    sourceIdsByKey.set(source.key, source.id);
+  }
+  await prisma.gameSource.createMany({
+    data: sourcesWithIds.map((source) => ({
+      id: source.id,
+      gameId,
+      sourceKey: source.key,
+      title: source.title,
+      url: source.url,
+      sourceType: source.type,
+      note: source.note ?? "",
+      accessedOn: new Date("2026-08-04T00:00:00.000Z")
+    }))
+  });
+
+  const factsWithIds = archive.facts.map((fact) => ({
+    ...fact,
+    id: randomUUID()
+  }));
+  await prisma.gameFact.createMany({
+    data: factsWithIds.map((fact) => ({
+      id: fact.id,
+      gameId,
+      slug: fact.slug,
+      sortOrder: fact.order,
+      evidenceStatus: fact.status,
+      claim: fact.claim,
+      verdict: fact.verdict
+    }))
+  });
+  await prisma.gameFactTranslation.createMany({
+    data: factsWithIds.flatMap((fact) =>
+      Object.entries(fact.translations).map(([locale, translation]) => ({
+        factId: fact.id,
+        locale,
+        ...translation
+      }))
+    )
+  });
+  await prisma.gameFactSource.createMany({
+    data: factsWithIds.flatMap((fact) =>
+      fact.sourceKeys.map((sourceKey) => {
+        const sourceId = sourceIdsByKey.get(sourceKey);
+        if (!sourceId) {
+          throw new Error(
+            `Fact '${fact.slug}' references unknown source '${sourceKey}'`
+          );
+        }
+        return { factId: fact.id, sourceId };
+      })
+    )
+  });
+
+  const relatedReleasesWithIds = archive.relatedReleases.map((release) => ({
+    ...release,
+    id: randomUUID()
+  }));
+  await prisma.gameRelatedRelease.createMany({
+    data: relatedReleasesWithIds.map((release) => ({
+      id: release.id,
+      gameId,
+      title: release.title,
+      releaseYear: release.year,
+      relationship: release.relationship,
+      sortOrder: release.order
+    }))
+  });
+  await prisma.gameRelatedReleaseTranslation.createMany({
+    data: relatedReleasesWithIds.flatMap((release) =>
+      Object.entries(release.translations).map(([locale, translation]) => ({
+        relatedReleaseId: release.id,
+        locale,
+        ...translation
+      }))
+    )
+  });
+}
+
 // --- Import Logic ---
 
-async function importGame(gameDir: string): Promise<{ slug: string; errors: string[] }> {
+async function importGame(
+  gameDir: string
+): Promise<{ slug: string; errors: string[] }> {
   const metadata = readMetadata(gameDir);
+  const archive = await readArchiveData(gameDir);
   const slug = metadata.slug;
   const errors: string[] = [];
 
@@ -170,7 +581,9 @@ async function importGame(gameDir: string): Promise<{ slug: string; errors: stri
     try {
       localeContents[locale] = parseGameMarkdown(mdFile);
     } catch (e) {
-      errors.push(`[${slug}] Error parsing game.${locale}.md: ${(e as Error).message}`);
+      errors.push(
+        `[${slug}] Error parsing game.${locale}.md: ${(e as Error).message}`
+      );
     }
   }
 
@@ -187,15 +600,44 @@ async function importGame(gameDir: string): Promise<{ slug: string; errors: stri
 
   // Upsert platforms
   const platformIds: string[] = [];
-  for (const platformName of metadata.platforms) {
+  const platformIdsByName = new Map<string, string>();
+  const platformNames = new Set([
+    ...metadata.platforms,
+    ...(archive?.releases.map((release) => release.platform) ?? [])
+  ]);
+  for (const platformName of platformNames) {
     const platformSlug = platformName.toLowerCase().replaceAll(" ", "-");
     const platform = await prisma.platform.upsert({
       where: { slug: platformSlug },
       update: { name: platformName },
-      create: { name: platformName, slug: platformSlug },
+      create: { name: platformName, slug: platformSlug }
     });
-    platformIds.push(platform.id);
+    platformIdsByName.set(platformName, platform.id);
+    if (metadata.platforms.includes(platformName)) {
+      platformIds.push(platform.id);
+    }
   }
+
+  const archiveGameData = archive
+    ? {
+        scope: archive.scope,
+        developer: archive.developer,
+        originalPublisher: archive.originalPublisher,
+        genre: archive.genre,
+        perspective: archive.perspective,
+        gameMode: archive.gameMode,
+        engine: archive.engine,
+        overviewImage: archive.images.overview,
+        storyImage: archive.images.story,
+        gameplayImage: archive.images.gameplay,
+        developmentImage: archive.images.development,
+        legacyImage: archive.images.legacy,
+        campaignLevelCount: archive.counts.campaignLevels,
+        trainingLevelCount: archive.counts.trainingLevels,
+        secretCount: archive.counts.secrets,
+        weaponCount: archive.counts.weapons
+      }
+    : {};
 
   // Upsert game (base locale populates the Game record)
   const game = await prisma.game.upsert({
@@ -205,11 +647,18 @@ async function importGame(gameDir: string): Promise<{ slug: string; errors: stri
       shortDescription: baseContent.frontmatter.shortDescription,
       fullDescription: baseContent.fullDescription,
       story: baseContent.story,
+      gameplay: baseContent.gameplay,
       development: baseContent.development,
+      legacy: baseContent.legacy,
+      characters: baseContent.characters,
+      locations: baseContent.locations,
+      levels: baseContent.levels,
+      factCheck: baseContent.factCheck,
       trivia: baseContent.trivia,
+      ...archiveGameData,
       releaseDate: new Date(metadata.releaseDate),
       coverImage: metadata.coverImage || "",
-      heroImage: metadata.heroImage || "",
+      heroImage: metadata.heroImage || ""
     },
     create: {
       slug,
@@ -217,20 +666,31 @@ async function importGame(gameDir: string): Promise<{ slug: string; errors: stri
       shortDescription: baseContent.frontmatter.shortDescription,
       fullDescription: baseContent.fullDescription,
       story: baseContent.story,
+      gameplay: baseContent.gameplay,
       development: baseContent.development,
+      legacy: baseContent.legacy,
+      characters: baseContent.characters,
+      locations: baseContent.locations,
+      levels: baseContent.levels,
+      factCheck: baseContent.factCheck,
       trivia: baseContent.trivia,
+      ...archiveGameData,
       releaseDate: new Date(metadata.releaseDate),
       coverImage: metadata.coverImage || "",
-      heroImage: metadata.heroImage || "",
-    },
+      heroImage: metadata.heroImage || ""
+    }
   });
 
   // Sync platform associations
   await prisma.gamePlatform.deleteMany({ where: { gameId: game.id } });
   for (const platformId of platformIds) {
     await prisma.gamePlatform.create({
-      data: { gameId: game.id, platformId },
+      data: { gameId: game.id, platformId }
     });
+  }
+
+  if (archive) {
+    await syncArchiveData(game.id, archive, platformIdsByName);
   }
 
   // Upsert translations for all locales (including base locale to keep en row in sync)
@@ -242,8 +702,14 @@ async function importGame(gameDir: string): Promise<{ slug: string; errors: stri
         shortDescription: content.frontmatter.shortDescription,
         fullDescription: content.fullDescription,
         story: content.story,
+        gameplay: content.gameplay,
         development: content.development,
-        trivia: content.trivia,
+        legacy: content.legacy,
+        characters: content.characters,
+        locations: content.locations,
+        levels: content.levels,
+        factCheck: content.factCheck,
+        trivia: content.trivia
       },
       create: {
         gameId: game.id,
@@ -252,9 +718,15 @@ async function importGame(gameDir: string): Promise<{ slug: string; errors: stri
         shortDescription: content.frontmatter.shortDescription,
         fullDescription: content.fullDescription,
         story: content.story,
+        gameplay: content.gameplay,
         development: content.development,
-        trivia: content.trivia,
-      },
+        legacy: content.legacy,
+        characters: content.characters,
+        locations: content.locations,
+        levels: content.levels,
+        factCheck: content.factCheck,
+        trivia: content.trivia
+      }
     });
   }
 
@@ -263,26 +735,55 @@ async function importGame(gameDir: string): Promise<{ slug: string; errors: stri
     for (const event of metadata.timeline) {
       // Use game + year + eventDate as a natural key for matching
       const existing = await prisma.timelineEvent.findFirst({
-        where: { gameId: game.id, year: event.year, eventDate: new Date(event.eventDate) },
+        where: {
+          gameId: game.id,
+          year: event.year,
+          eventDate: new Date(event.eventDate)
+        }
       });
 
+      let timelineEventId: string;
+
       if (existing) {
-        await prisma.timelineEvent.update({
+        const updated = await prisma.timelineEvent.update({
           where: { id: existing.id },
           data: {
             title: event.title,
-            description: event.description,
-          },
+            description: event.description
+          }
         });
+        timelineEventId = updated.id;
       } else {
-        await prisma.timelineEvent.create({
+        const created = await prisma.timelineEvent.create({
           data: {
             year: event.year,
             title: event.title,
             description: event.description,
             eventDate: new Date(event.eventDate),
-            gameId: game.id,
-          },
+            gameId: game.id
+          }
+        });
+        timelineEventId = created.id;
+      }
+
+      const timelineTranslations = {
+        en: { title: event.title, description: event.description },
+        ...event.translations
+      };
+
+      for (const [locale, translation] of Object.entries(
+        timelineTranslations
+      )) {
+        if (!SUPPORTED_LOCALES.includes(locale)) continue;
+
+        await prisma.timelineEventTranslation.upsert({
+          where: { eventId_locale: { eventId: timelineEventId, locale } },
+          update: translation,
+          create: {
+            eventId: timelineEventId,
+            locale,
+            ...translation
+          }
         });
       }
     }
@@ -301,10 +802,22 @@ async function main() {
     process.exit(1);
   }
 
+  const requestedSlugs = new Set(process.argv.slice(2));
   const gameDirs = fs.readdirSync(CONTENT_DIR).filter((entry) => {
     const fullPath = path.join(CONTENT_DIR, entry);
-    return fs.statSync(fullPath).isDirectory();
+    return (
+      fs.statSync(fullPath).isDirectory() &&
+      (requestedSlugs.size === 0 || requestedSlugs.has(entry))
+    );
   });
+
+  const missingSlugs = [...requestedSlugs].filter(
+    (slug) => !gameDirs.includes(slug)
+  );
+  if (missingSlugs.length > 0) {
+    console.error(`Unknown game slug(s): ${missingSlugs.join(", ")}`);
+    process.exit(1);
+  }
 
   if (gameDirs.length === 0) {
     console.log("No game directories found in content/games/");
@@ -330,7 +843,9 @@ async function main() {
     }
   }
 
-  console.log(`\n📦 Import complete: ${imported} games imported, ${totalErrors} errors.`);
+  console.log(
+    `\n📦 Import complete: ${imported} games imported, ${totalErrors} errors.`
+  );
 
   if (totalErrors > 0) {
     process.exit(1);

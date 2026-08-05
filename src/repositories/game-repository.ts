@@ -6,10 +6,40 @@ const gameIncludes = (locale: string) => ({
     orderBy: { platform: { name: "asc" as const } }
   },
   mediaAssets: {
-    orderBy: { createdAt: "asc" as const }
+    orderBy: { createdAt: "asc" as const },
+    include: {
+      translations: { where: { locale } }
+    }
   },
   translations: {
     where: { locale }
+  },
+  gameCharacters: {
+    orderBy: { sortOrder: "asc" as const },
+    include: {
+      character: {
+        include: { translations: { where: { locale } } }
+      }
+    }
+  },
+  gameLocations: {
+    orderBy: { sortOrder: "asc" as const },
+    include: {
+      location: {
+        include: { translations: { where: { locale } } }
+      }
+    }
+  },
+  gameLevels: {
+    orderBy: { sortOrder: "asc" as const },
+    include: { translations: { where: { locale } } }
+  },
+  facts: {
+    orderBy: { sortOrder: "asc" as const },
+    include: {
+      translations: { where: { locale } },
+      sourceLinks: { include: { source: true } }
+    }
   }
 });
 

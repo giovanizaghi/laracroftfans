@@ -9,6 +9,7 @@ content/
   games/
     <slug>/
       metadata.json    # Non-translatable game data
+      archive.ts       # Optional normalized research data imported into relational tables
       game.en.md       # English content
       game.pt.md       # Portuguese content
 ```
@@ -31,6 +32,30 @@ Story content here.
 
 Development notes here.
 
+## Gameplay
+
+Optional gameplay and systems overview.
+
+## Legacy
+
+Optional reception, influence, and later-release context.
+
+## Characters
+
+Optional game-specific character record.
+
+## Locations
+
+Optional game-specific location record.
+
+## Levels
+
+Optional level list.
+
+## Fact Check
+
+Optional verification notes that distinguish confirmed facts, drafts, myths, and later continuity.
+
 ## Trivia
 
 - Trivia point 1
@@ -51,11 +76,22 @@ Development notes here.
       "year": 1996,
       "title": "Game release event",
       "description": "Description of the event.",
-      "eventDate": "1996-10-25"
+      "eventDate": "1996-10-25",
+      "translations": {
+        "pt": {
+          "title": "Evento de lançamento do jogo",
+          "description": "Descrição traduzida do evento."
+        }
+      }
     }
   ]
 }
 ```
+
+Detailed research is not stored as a JSON blob. When a game has an
+`archive.ts`, the importer writes its releases, levels, characters, locations,
+artifacts, weapons, enemies, credits, ratings, sources, fact checks, and related
+releases to their respective relational tables.
 
 ## Scripts
 

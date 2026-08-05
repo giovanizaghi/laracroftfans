@@ -502,17 +502,184 @@
         rgba(250, 204, 21, 0.08) 38.15%,
         transparent 38.35% 100%
       ),
-      radial-gradient(
-        circle at 0 0,
-        rgba(251, 191, 36, 0.1),
-        transparent 12rem
-      );
+      radial-gradient(circle at 0 0, rgba(251, 191, 36, 0.1), transparent 12rem);
     opacity: 0.64;
     pointer-events: none;
   }
 
   .archive-stone-panel > * {
     position: relative;
+  }
+
+  .editorial-content-block {
+    display: grid;
+  }
+
+  .editorial-content-image {
+    position: relative;
+    min-height: 17rem;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(251, 191, 36, 0.16);
+    background:
+      radial-gradient(
+        circle at 50% 20%,
+        rgba(251, 191, 36, 0.14),
+        transparent 14rem
+      ),
+      #0c0a09;
+  }
+
+  @media (min-width: 1024px) {
+    .editorial-content-block {
+      grid-template-columns: minmax(18rem, 0.78fr) minmax(0, 1.22fr);
+      min-height: 24rem;
+    }
+
+    .editorial-content-block-reverse {
+      grid-template-columns: minmax(0, 1.22fr) minmax(18rem, 0.78fr);
+    }
+
+    .editorial-content-block-reverse .editorial-content-image {
+      grid-column: 2;
+    }
+
+    .editorial-content-block-reverse > :last-child {
+      grid-row: 1;
+      grid-column: 1;
+    }
+
+    .editorial-content-image {
+      min-height: 100%;
+      border-right: 1px solid rgba(251, 191, 36, 0.16);
+      border-bottom: 0;
+    }
+
+    .editorial-content-block-reverse .editorial-content-image {
+      border-right: 0;
+      border-left: 1px solid rgba(251, 191, 36, 0.16);
+    }
+  }
+
+  .archive-card-rail {
+    display: grid;
+    grid-auto-columns: minmax(17.5rem, 21rem);
+    grid-auto-flow: column;
+    gap: 1rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding: 0.15rem 0.15rem 1rem;
+    scroll-padding-inline: 0.15rem;
+    scroll-snap-type: inline proximity;
+    scrollbar-color: rgba(251, 191, 36, 0.42) rgba(28, 25, 23, 0.72);
+    scrollbar-width: thin;
+  }
+
+  .archive-card-rail::-webkit-scrollbar {
+    height: 0.55rem;
+  }
+
+  .archive-card-rail::-webkit-scrollbar-track {
+    border-radius: 999px;
+    background: rgba(28, 25, 23, 0.72);
+  }
+
+  .archive-card-rail::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgba(251, 191, 36, 0.42);
+  }
+
+  .archive-card-rail-item {
+    min-width: 0;
+    list-style: none;
+    scroll-snap-align: start;
+  }
+
+  .archive-record-card {
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(214, 211, 209, 0.14);
+    border-radius: 8px;
+    background:
+      linear-gradient(145deg, rgba(68, 64, 60, 0.66), rgba(12, 10, 9, 0.94)),
+      repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.025) 0 1px,
+        transparent 1px 12px
+      );
+    box-shadow:
+      inset 0 0 34px rgba(0, 0, 0, 0.44),
+      0 18px 44px rgba(0, 0, 0, 0.24);
+  }
+
+  .archive-record-image {
+    position: relative;
+    min-height: 14rem;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(251, 191, 36, 0.16);
+    background:
+      radial-gradient(
+        circle at 50% 25%,
+        rgba(251, 191, 36, 0.13),
+        transparent 10rem
+      ),
+      linear-gradient(145deg, #292524, #0c0a09);
+  }
+
+  .archive-photo-placeholder {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding: 1.5rem;
+    color: rgba(214, 211, 209, 0.62);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .fact-verdict-card {
+    border: 1px solid rgba(214, 211, 209, 0.14);
+    border-left-width: 3px;
+    border-radius: 8px;
+    padding: 1.35rem;
+    background:
+      radial-gradient(
+        circle at 100% 0%,
+        rgba(251, 191, 36, 0.08),
+        transparent 11rem
+      ),
+      linear-gradient(145deg, rgba(41, 37, 36, 0.82), rgba(12, 10, 9, 0.94));
+    box-shadow: inset 0 0 28px rgba(0, 0, 0, 0.34);
+  }
+
+  .fact-verdict-confirmed {
+    border-left-color: rgb(74 222 128 / 0.72);
+  }
+
+  .fact-verdict-confirmed > :first-child {
+    color: rgb(134 239 172);
+  }
+
+  .fact-verdict-refuted {
+    border-left-color: rgb(248 113 113 / 0.78);
+  }
+
+  .fact-verdict-refuted > :first-child {
+    color: rgb(252 165 165);
+  }
+
+  .fact-verdict-qualified {
+    border-left-color: rgb(251 191 36 / 0.74);
+  }
+
+  .fact-verdict-qualified > :first-child {
+    color: rgb(253 230 138);
   }
 
   .ancient-button {
@@ -669,25 +836,41 @@
 
   .artifact-cover-jade {
     background:
-      radial-gradient(circle at 30% 20%, rgba(187, 247, 208, 0.22), transparent),
+      radial-gradient(
+        circle at 30% 20%,
+        rgba(187, 247, 208, 0.22),
+        transparent
+      ),
       linear-gradient(145deg, #2f5f4d, #102820);
   }
 
   .artifact-cover-bronze {
     background:
-      radial-gradient(circle at 35% 20%, rgba(253, 186, 116, 0.24), transparent),
+      radial-gradient(
+        circle at 35% 20%,
+        rgba(253, 186, 116, 0.24),
+        transparent
+      ),
       linear-gradient(145deg, #92400e, #30160a);
   }
 
   .artifact-cover-obsidian {
     background:
-      radial-gradient(circle at 38% 20%, rgba(214, 211, 209, 0.18), transparent),
+      radial-gradient(
+        circle at 38% 20%,
+        rgba(214, 211, 209, 0.18),
+        transparent
+      ),
       linear-gradient(145deg, #44403c, #050403);
   }
 
   .artifact-cover-river {
     background:
-      radial-gradient(circle at 38% 20%, rgba(125, 211, 252, 0.18), transparent),
+      radial-gradient(
+        circle at 38% 20%,
+        rgba(125, 211, 252, 0.18),
+        transparent
+      ),
       linear-gradient(145deg, #164e63, #082f49);
   }
 
@@ -939,7 +1122,7 @@
         rgba(255, 255, 255, 0.018) 0 1px,
         transparent 1px 13px
       ),
-      url("/images/midas-palace.png");
+      url("/images/midas-palace.webp");
     background-position: center;
     background-size: cover;
   }
@@ -1224,7 +1407,12 @@
     height: 0.75rem;
     border-radius: 999px;
     background:
-      linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.36), transparent),
+      linear-gradient(
+        90deg,
+        transparent,
+        rgba(251, 191, 36, 0.36),
+        transparent
+      ),
       repeating-linear-gradient(
         90deg,
         transparent 0 1.2rem,

@@ -42,6 +42,7 @@ export function SiteHeader({
             className="h-auto w-full drop-shadow-[0_10px_24px_rgba(0,0,0,0.72)] transition-transform duration-200 group-hover:-translate-y-0.5"
             height={1024}
             priority
+            sizes="(min-width: 640px) 144px, 112px"
             src="/images/lara-croft-fans-logo.png"
             width={1536}
           />

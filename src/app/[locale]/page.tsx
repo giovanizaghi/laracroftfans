@@ -81,6 +81,7 @@ export default async function HomePage({ params }: PageProps) {
               className="mx-auto h-auto w-full max-w-sm drop-shadow-[0_18px_40px_rgba(0,0,0,0.74)]"
               height={1024}
               priority
+              sizes="(min-width: 1024px) 384px, 90vw"
               src="/images/lara-croft-fans-logo.png"
               width={1536}
             />

@@ -14,7 +14,13 @@ function toMarkdown(data: {
   shortDescription: string;
   fullDescription: string;
   story: string;
+  gameplay: string;
   development: string;
+  legacy: string;
+  characters: string;
+  locations: string;
+  levels: string;
+  factCheck: string;
   trivia: string[];
 }): string {
   const lines: string[] = [];
@@ -29,10 +35,46 @@ function toMarkdown(data: {
   lines.push("## Story");
   lines.push("");
   lines.push(data.story);
+  if (data.gameplay) {
+    lines.push("");
+    lines.push("## Gameplay");
+    lines.push("");
+    lines.push(data.gameplay);
+  }
   lines.push("");
   lines.push("## Development");
   lines.push("");
   lines.push(data.development);
+  if (data.legacy) {
+    lines.push("");
+    lines.push("## Legacy");
+    lines.push("");
+    lines.push(data.legacy);
+  }
+  if (data.characters) {
+    lines.push("");
+    lines.push("## Characters");
+    lines.push("");
+    lines.push(data.characters);
+  }
+  if (data.locations) {
+    lines.push("");
+    lines.push("## Locations");
+    lines.push("");
+    lines.push(data.locations);
+  }
+  if (data.levels) {
+    lines.push("");
+    lines.push("## Levels");
+    lines.push("");
+    lines.push(data.levels);
+  }
+  if (data.factCheck) {
+    lines.push("");
+    lines.push("## Fact Check");
+    lines.push("");
+    lines.push(data.factCheck);
+  }
   lines.push("");
   lines.push("## Trivia");
   lines.push("");
@@ -50,7 +92,13 @@ function toMetadataJson(data: {
   platforms: string[];
   coverImage: string;
   heroImage: string;
-  timeline: { year: number; title: string; description: string; eventDate: string }[];
+  timeline: {
+    year: number;
+    title: string;
+    description: string;
+    eventDate: string;
+    translations?: Record<string, { title: string; description: string }>;
+  }[];
 }): string {
   return JSON.stringify(data, null, 2) + "\n";
 }
@@ -64,9 +112,9 @@ async function exportGames() {
     include: {
       platforms: { include: { platform: true } },
       translations: true,
-      timelineEvents: true,
+      timelineEvents: { include: { translations: true } }
     },
-    orderBy: { releaseDate: "asc" },
+    orderBy: { releaseDate: "asc" }
   });
 
   if (games.length === 0) {
@@ -89,10 +137,20 @@ async function exportGames() {
       shortDescription: game.shortDescription,
       fullDescription: game.fullDescription,
       story: game.story,
+      gameplay: game.gameplay,
       development: game.development,
-      trivia: game.trivia,
+      legacy: game.legacy,
+      characters: game.characters,
+      locations: game.locations,
+      levels: game.levels,
+      factCheck: game.factCheck,
+      trivia: game.trivia
     });
-    fs.writeFileSync(path.join(gameDir, `game.${BASE_LOCALE}.md`), enMarkdown, "utf-8");
+    fs.writeFileSync(
+      path.join(gameDir, `game.${BASE_LOCALE}.md`),
+      enMarkdown,
+      "utf-8"
+    );
 
     // Export translations
     for (const translation of game.translations) {
@@ -103,10 +161,20 @@ async function exportGames() {
         shortDescription: translation.shortDescription,
         fullDescription: translation.fullDescription,
         story: translation.story,
+        gameplay: translation.gameplay,
         development: translation.development,
-        trivia: translation.trivia,
+        legacy: translation.legacy,
+        characters: translation.characters,
+        locations: translation.locations,
+        levels: translation.levels,
+        factCheck: translation.factCheck,
+        trivia: translation.trivia
       });
-      fs.writeFileSync(path.join(gameDir, `game.${translation.locale}.md`), translationMarkdown, "utf-8");
+      fs.writeFileSync(
+        path.join(gameDir, `game.${translation.locale}.md`),
+        translationMarkdown,
+        "utf-8"
+      );
     }
 
     // Export metadata.json
@@ -115,6 +183,23 @@ async function exportGames() {
       title: event.title,
       description: event.description,
       eventDate: event.eventDate.toISOString().split("T")[0],
+      ...(event.translations.some(
+        (translation) => translation.locale !== BASE_LOCALE
+      )
+        ? {
+            translations: Object.fromEntries(
+              event.translations
+                .filter((translation) => translation.locale !== BASE_LOCALE)
+                .map((translation) => [
+                  translation.locale,
+                  {
+                    title: translation.title,
+                    description: translation.description
+                  }
+                ])
+            )
+          }
+        : {})
     }));
 
     const metadata = toMetadataJson({
@@ -123,7 +208,7 @@ async function exportGames() {
       platforms: game.platforms.map((gp) => gp.platform.name),
       coverImage: game.coverImage,
       heroImage: game.heroImage,
-      timeline,
+      timeline
     });
     fs.writeFileSync(path.join(gameDir, "metadata.json"), metadata, "utf-8");
 
@@ -131,7 +216,9 @@ async function exportGames() {
     exported++;
   }
 
-  console.log(`\n📤 Export complete: ${exported} games exported to content/games/`);
+  console.log(
+    `\n📤 Export complete: ${exported} games exported to content/games/`
+  );
 }
 
 // --- Main ---
