@@ -17,6 +17,7 @@ const gameIncludes = (locale: string) => ({
   gameCharacters: {
     orderBy: { sortOrder: "asc" as const },
     include: {
+      translations: { where: { locale } },
       character: {
         include: { translations: { where: { locale } } }
       }
@@ -25,6 +26,7 @@ const gameIncludes = (locale: string) => ({
   gameLocations: {
     orderBy: { sortOrder: "asc" as const },
     include: {
+      translations: { where: { locale } },
       location: {
         include: { translations: { where: { locale } } }
       }

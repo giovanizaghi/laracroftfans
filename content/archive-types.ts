@@ -113,7 +113,13 @@ export interface GameArchiveInput {
     slug: string;
     name: string;
     description: string;
-    category: "WILDLIFE" | "DINOSAUR" | "ATLANTEAN" | "HUMAN" | "BOSS";
+    category:
+      | "WILDLIFE"
+      | "DINOSAUR"
+      | "ATLANTEAN"
+      | "SUPERNATURAL"
+      | "HUMAN"
+      | "BOSS";
     order: number;
     status: EvidenceStatus;
     note?: string;

@@ -56,37 +56,47 @@ function mapGame(game: GameRecord, index = 0, locale = "en"): ArchiveGame {
       };
     });
 
-  const characters = game.gameCharacters.map(({ character, role, note }) => {
-    const translated = resolveTranslation(
-      { name: character.name, description: character.description },
-      character.translations,
+  const characters = game.gameCharacters.map((gameCharacter) => {
+    const translatedCharacter = resolveTranslation(
+      { name: gameCharacter.character.name },
+      gameCharacter.character.translations,
+      locale
+    );
+    const translatedAppearance = resolveTranslation(
+      { description: gameCharacter.description },
+      gameCharacter.translations,
       locale
     );
 
     return {
-      id: character.id,
-      title: translated.name,
-      description: translated.description,
-      imageUrl: character.imageUrl,
-      eyebrow: role,
-      note
+      id: gameCharacter.character.id,
+      title: translatedCharacter.name,
+      description: translatedAppearance.description,
+      imageUrl: gameCharacter.imageUrl,
+      eyebrow: gameCharacter.role,
+      note: gameCharacter.note
     };
   });
 
-  const locations = game.gameLocations.map(({ location, kind, note }) => {
-    const translated = resolveTranslation(
-      { name: location.name, description: location.description },
-      location.translations,
+  const locations = game.gameLocations.map((gameLocation) => {
+    const translatedLocation = resolveTranslation(
+      { name: gameLocation.location.name },
+      gameLocation.location.translations,
+      locale
+    );
+    const translatedAppearance = resolveTranslation(
+      { description: gameLocation.description },
+      gameLocation.translations,
       locale
     );
 
     return {
-      id: location.id,
-      title: translated.name,
-      description: translated.description,
-      imageUrl: location.imageUrl,
-      eyebrow: kind,
-      note
+      id: gameLocation.location.id,
+      title: translatedLocation.name,
+      description: translatedAppearance.description,
+      imageUrl: gameLocation.imageUrl,
+      eyebrow: gameLocation.kind,
+      note: gameLocation.note
     };
   });
 

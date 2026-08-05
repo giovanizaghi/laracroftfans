@@ -54,6 +54,7 @@ enum EnemyCategory {
   WILDLIFE
   DINOSAUR
   ATLANTEAN
+  SUPERNATURAL
   HUMAN
   BOSS
 }
@@ -307,17 +308,34 @@ model Character {
 model GameCharacter {
   gameId         String
   characterId    String
-  game           Game              @relation(fields: [gameId], references: [id], onDelete: Cascade)
-  character      Character         @relation(fields: [characterId], references: [id], onDelete: Restrict)
+  game           Game                       @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  character      Character                  @relation(fields: [characterId], references: [id], onDelete: Restrict)
   role           GameCharacterRole
+  description    String                     @default("")
+  imageUrl       String                     @default("")
   sortOrder      Int
-  evidenceStatus EvidenceStatus    @default(CONFIRMED)
-  note           String            @default("")
-  createdAt      DateTime          @default(now())
+  evidenceStatus EvidenceStatus             @default(CONFIRMED)
+  note           String                     @default("")
+  createdAt      DateTime                   @default(now())
+  translations   GameCharacterTranslation[]
 
   @@id([gameId, characterId])
   @@unique([gameId, sortOrder])
   @@index([characterId])
+}
+
+model GameCharacterTranslation {
+  id            String        @id @default(cuid())
+  gameId        String
+  characterId   String
+  gameCharacter GameCharacter @relation(fields: [gameId, characterId], references: [gameId, characterId], onDelete: Cascade)
+  locale        String
+  description   String        @default("")
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@unique([gameId, characterId, locale])
+  @@index([locale])
 }
 
 model CharacterTranslation {
@@ -351,17 +369,34 @@ model Location {
 model GameLocation {
   gameId         String
   locationId     String
-  game           Game           @relation(fields: [gameId], references: [id], onDelete: Cascade)
-  location       Location       @relation(fields: [locationId], references: [id], onDelete: Restrict)
+  game           Game                      @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  location       Location                  @relation(fields: [locationId], references: [id], onDelete: Restrict)
   kind           LocationKind
+  description    String                    @default("")
+  imageUrl       String                    @default("")
   sortOrder      Int
-  evidenceStatus EvidenceStatus @default(CONFIRMED)
-  note           String         @default("")
-  createdAt      DateTime       @default(now())
+  evidenceStatus EvidenceStatus            @default(CONFIRMED)
+  note           String                    @default("")
+  createdAt      DateTime                  @default(now())
+  translations   GameLocationTranslation[]
 
   @@id([gameId, locationId])
   @@unique([gameId, sortOrder])
   @@index([locationId])
+}
+
+model GameLocationTranslation {
+  id           String       @id @default(cuid())
+  gameId       String
+  locationId   String
+  gameLocation GameLocation @relation(fields: [gameId, locationId], references: [gameId, locationId], onDelete: Cascade)
+  locale       String
+  description  String       @default("")
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@unique([gameId, locationId, locale])
+  @@index([locale])
 }
 
 model LocationTranslation {

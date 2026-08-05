@@ -1,18 +1,21 @@
 {
   "slug": "tomb-raider-ii",
-  "releaseDate": "1997-11-21",
-  "platforms": [
-    "PlayStation",
-    "PC"
-  ],
-  "coverImage": "/images/midas-palace.png",
-  "heroImage": "/images/midas-palace.png",
+  "releaseDate": "1997-11-24",
+  "platforms": ["PlayStation", "Windows"],
+  "coverImage": "",
+  "heroImage": "",
   "timeline": [
     {
       "year": 1997,
       "title": "Tomb Raider II release",
-      "description": "A race for the Dagger of Xian across Venice, offshore wrecks, monasteries, and hidden Chinese temples.",
-      "eventDate": "1997-11-21"
+      "description": "Core Design's sequel sends Lara Croft after the Dagger of Xian across China, Venice, the Adriatic, and Tibet.",
+      "eventDate": "1997-11-24",
+      "translations": {
+        "pt": {
+          "title": "Lançamento de Tomb Raider II",
+          "description": "A sequência da Core Design leva Lara Croft em busca do Punhal de Xian pela China, Veneza, o Adriático e o Tibete."
+        }
+      }
     }
   ]
 }

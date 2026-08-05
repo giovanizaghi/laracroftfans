@@ -1,0 +1,1 @@
+ALTER TYPE "EnemyCategory" ADD VALUE 'SUPERNATURAL';

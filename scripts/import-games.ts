@@ -301,9 +301,19 @@ async function syncArchiveData(
           gameId,
           characterId: character.id,
           role: entry.role,
+          description: entry.description,
+          imageUrl: entry.imageUrl ?? "",
           sortOrder: entry.order,
           evidenceStatus: entry.status,
-          note: entry.note ?? ""
+          note: entry.note ?? "",
+          translations: {
+            create: Object.entries(entry.translations).map(
+              ([locale, translation]) => ({
+                locale,
+                description: translation.description
+              })
+            )
+          }
         }
       });
     })
@@ -339,9 +349,19 @@ async function syncArchiveData(
           gameId,
           locationId: location.id,
           kind: entry.kind,
+          description: entry.description,
+          imageUrl: entry.imageUrl ?? "",
           sortOrder: entry.order,
           evidenceStatus: entry.status,
-          note: entry.note ?? ""
+          note: entry.note ?? "",
+          translations: {
+            create: Object.entries(entry.translations).map(
+              ([locale, translation]) => ({
+                locale,
+                description: translation.description
+              })
+            )
+          }
         }
       });
     })

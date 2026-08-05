@@ -1,88 +1,99 @@
 ---
 title: "Tomb Raider II"
-shortDescription: "A race for the Dagger of Xian across Venice, offshore wrecks, monasteries, and hidden Chinese temples."
+shortDescription: "Lara Croft races the Fiamma Nera from the Great Wall to Venice, a sunken liner, and Tibet in pursuit of the Dagger of Xian."
 ---
 
-Released on November 21, 1997 for Windows and PlayStation, Tomb Raider II was developed by Core Design and published by Eidos Interactive. It arrived less than a year after the original — a development window of between six and nine months by different accounts — under conditions of intense commercial pressure that would define the franchise's output throughout the Core Design era.
+Tomb Raider II is the original 1997 sequel developed by Core Design and published by Eidos Interactive for Windows PC and PlayStation. A contemporary Eidos release announced that both editions were shipping on November 24, 1997, which is also the date used by the current official franchise page. Some release databases list November 21; that disagreement is preserved in the fact-check record instead of being hidden.
 
-The game expanded virtually every dimension of its predecessor. The number of environments multiplied: Venice, a sunken ocean liner, the Tibetan foothills, a besieged monastery, jade floating islands. The character model was rebuilt. Vehicles appeared for the first time. The enemy roster shifted toward armed human opponents alongside the series' signature wildlife. Lara gained new outfits for different climates, a ponytail that had been technically infeasible in the first game, and a home in Croft Manor that could be explored from the main menu.
-
-The result sold 6.8 million copies worldwide as of 2009 and became the second overall best-selling PlayStation title in the United Kingdom. It earned the Adventure Game of the Year award from Electronic Gaming Monthly and remains, for many players, the representative game of the Core Design era.
+The sequel keeps the first game's third-person, grid-based exploration while expanding almost every surrounding system. Lara can climb marked walls and ladders, wade through shallow water, use flares, drive a motorboat and snowmobiles, and carry a seven-weapon arsenal. The journey spans 18 story levels plus a separate Croft Manor training area. Its first 16 campaign levels contain 48 secrets in the form of silver, jade, and gold dragon statuettes.
 
 ## Story
 
-The Dagger of Xian is an ancient Chinese weapon with a singular property: plunged into its bearer's heart, it transforms the wielder into a dragon. An ancient emperor once used it to command his armies. A Tibetan order — the monks of Barkhang Monastery — defeated the emperor and sealed the Dagger away beneath the Great Wall of China.
+In 210 BC, an ancient Chinese emperor uses the Dagger of Xian to transform into a dragon and empower his army. Tibetan warrior monks resist his conquest. A wounded monk removes the blade from the dragon's body, ending the transformation, and the surviving monks return the Dagger to a chamber inside the Temple of Xian at the Great Wall.
 
-Lara Croft arrives at the Wall in search of the Dagger. So does Marco Bartoli.
+In 1997, Lara Croft reaches the sealed temple while investigating the legend. She is attacked by Claudio, a member of the Fiamma Nera. Before taking poison, he invokes the cult's leader, Marco Bartoli. Claudio's notebook points Lara toward Gianni Bartoli's former residence on Via Caravelli in Venice.
 
-Bartoli leads the Fiamma Nera, an Italian cult whose obsession with the Dagger traces back to his father Gianni, who died when his luxury liner, the Maria Doria, was bombed and sunk. The Seraph — a key object essential to accessing the Dagger's chamber — went down with the ship. Bartoli's plan: recover the Seraph from the wreck, use it to open the chamber, and use the Dagger to transform himself.
+Lara follows the Fiamma Nera through Venice's canals, Bartoli's hideout, and an abandoned opera house. She hides aboard Bartoli's seaplane, overhears Marco and his co-pilot Fabio, and is knocked unconscious by the mechanic Eros. When she wakes on an offshore rig, her weapons have been taken and the cult's salvage operation is already underway above the wreck of the Maria Doria.
 
-Lara's path crosses Bartoli's at every step. In Venice, she tracks the Fiamma Nera through canals and into an abandoned opera house. She stows away on a seaplane leaving the city with Bartoli aboard, is discovered, and is imprisoned on a converted oil rig above the Maria Doria's resting place. She escapes, dives to the wreck, and navigates its flooded corridors, cargo holds, and collapsed decks until she recovers the Seraph. The Maria Doria sections — claustrophobic, dark, and progressively more disorienting as the ship's geometry defies architectural logic — are among the most atmospherically distinct environments in the series.
+On the rig, Lara meets Brother Chan Barkhang. He explains that Marco's father Gianni once possessed the Seraph, a key to catacombs beneath Barkhang Monastery. Those catacombs contain the Talion, which opens the Temple of Xian. Monks sank Gianni's ship to prevent him from reaching it, leaving the Seraph in the wreck. Marco kills Chan before Lara can escape.
 
-At the oil rig, before she escapes, Lara witnesses Bartoli kill a monk of the Barkhang Monastery — the same order that sealed the Dagger away centuries before. The monk had been there to stop Bartoli. He does not succeed.
+Lara follows the salvage operation beneath the Adriatic. She survives a minisub crash, enters the inverted Maria Doria, and crosses its flooded corridors, ballroom, living quarters, boilers, and shattered decks. She finds the Seraph before Bartoli's people and steals the seaplane to reach Tibet.
 
-Lara heads to Tibet. The Barkhang Monastery is under siege from the Fiamma Nera when she arrives; the monks, who recognize what Bartoli is after, fight alongside her. Using the Seraph, she opens the passage to the Dagger's chamber and kills the guardian protecting it. Before she can reach the Dagger, she is plunged into catacombs beneath the structure.
+After the aircraft crashes in the mountains, Lara travels through the Tibetan foothills and reaches Barkhang Monastery during an assault by the Fiamma Nera. The warrior monks fight the cult and remain friendly to Lara unless she attacks them. The Seraph opens the catacombs; beyond them, Lara defeats the Guardian of the Talion and recovers the key.
 
-She makes her way back. She is too late, and also not too late.
+Lara returns to China and uses the Talion to open the Temple of Xian. At the Dagger chamber, she finds Bartoli performing a ritual. He drives the blade into his own heart, and his followers carry his body into a supernatural realm of floating jade islands and animated stone warriors. Lara pursues them to the Dragon's Lair, brings down Bartoli's dragon form, and removes the Dagger before he can revive. The body collapses into a skeleton and the temple begins to fall apart.
 
-Bartoli stabs himself with the Dagger and is carried through a portal by his followers. Lara follows. What lies beyond is not China or Tibet but something older and less explicable: floating islands of jade, animated stone statues, spaces that obey no physical law she has encountered before. At the end of this space, Bartoli is mid-transformation — part man, part dragon. Lara kills the dragon, pulls the Dagger from Bartoli's heart, and escapes back into the real world as the structure collapses.
+The playable epilogue, Home Sweet Home, takes place at Croft Manor. Surviving Fiamma Nera members attack Lara to reclaim the Dagger. She defeats them in her bathrobe, then ends the game by confronting the camera with her shotgun.
 
-A section of the Great Wall explodes in her wake.
+## Gameplay
 
-The game's final level takes place at Croft Manor. The Fiamma Nera make a last attempt on Lara's life at her own home. She kills them. The final scene shows Lara in the manor's shower, breaking the fourth wall by shooting directly at the camera before the screen cuts.
+Tomb Raider II retains the deliberate tank controls and block-based level construction of the first game. Traversal depends on reading distances, lining up jumps, grabbing ledges, swimming, moving blocks, operating switches, and understanding how rooms connect vertically. The sequel adds climbable surfaces, shallow-water movement, a mid-air roll, an underwater turn, breakable glass, ziplines, and more dynamic lighting.
+
+Flares are both a light source and a movable object: Lara can carry or throw them to reveal dark rooms. Vehicles are playable for the first time in a released Tomb Raider game. The motorboat turns Venice into a timed canal route, while snowmobiles combine traversal and combat in Tibet.
+
+The complete retail arsenal is dual pistols, shotgun, Automatic Pistols, dual Uzis, Harpoon Gun, M16, and Grenade Launcher. The pistols have unlimited ammunition; every other weapon consumes collected ammunition. A rocket launcher appears in development strings and some promotional copy but is not a weapon in the shipped game.
+
+The campaign contains more sustained combat and more human opponents than its predecessor. Barkhang Monastery also introduces a faction rule: monks attack the Fiamma Nera, but they become hostile to Lara if she shoots one of them. Released versions allow manual saving without collectible save crystals. Crystal references preserved in development data describe an abandoned state, not the retail PlayStation system.
+
+There are 48 campaign secrets. Levels 1 through 16 each hide three dragon statuettes — silver, jade, and gold — and collecting the complete trio in a level grants supplies. The Dragon's Lair and Home Sweet Home have no secrets, and finding all 48 does not unlock a base-game bonus level.
+
+## Characters
+
+Lara Croft is the sole playable protagonist. Marco Bartoli is the principal antagonist and leader of the Fiamma Nera, continuing his father Gianni's pursuit of the Dagger. Brother Chan supplies the key connection between the Seraph, the Talion, and Barkhang Monastery before Bartoli kills him.
+
+The preserved English transcript and credits name Claudio, the cultist at the Great Wall, and Fabio, Bartoli's seaplane co-pilot. The scene transcript also names Eros, the mechanic who knocks Lara unconscious, although the English credits do not assign him a separate performer. Winston is introduced as Lara's butler in the expanded Croft Manor. The ancient ruler in the opening is not named in spoken dialogue: a preserved Core Design transcript identifies him as Qin Shi Huang, while current official lore calls him the Dragon Emperor, so the identification remains qualified in the archive.
+
+## Locations
+
+The journey begins and ends at the Great Wall and Temple of Xian in China. Venice covers the canals, Via Caravelli, Bartoli's residence, and the opera house. The middle of the game moves to an offshore rig in the Adriatic and then through four levels inside and around the Maria Doria wreck.
+
+The Tibetan chapter crosses snowy foothills, Barkhang Monastery, the Catacombs of the Talion, and the Ice Palace. The final return to China descends through the Temple of Xian and enters the Floating Islands, a supernatural jade environment that level designer Heather Gibson associated with Chinese myths and optical mirages. Croft Manor serves twice: as an optional training space and as the setting of the epilogue.
+
+## Levels
+
+The database records 19 playable entries: Lara's Home as a separate training area, followed by 18 story stages. The campaign order is The Great Wall; Venice; Bartoli's Hideout; Opera House; Offshore Rig; Diving Area; 40 Fathoms; Wreck of the Maria Doria; Living Quarters; The Deck; Tibetan Foothills; Barkhang Monastery; Catacombs of the Talion; Ice Palace; Temple of Xian; Floating Islands; The Dragon's Lair; and Home Sweet Home.
+
+The common description “16 full-size levels plus two short ending levels” refers to the same 18-stage campaign. It does not include Lara's Home, and The Dragon's Lair and Home Sweet Home are still story stages even though they contain no secrets.
 
 ## Development
 
-Planning for a sequel began, by some accounts, two months before the original Tomb Raider had even released. The commercial logic was straightforward: Core Design and Eidos Interactive had produced something that was already generating extraordinary pre-release attention, and a follow-up was treated as certain before the first game's sales figures were known. Co-designer Heather Gibson later described not making a sequel as "unthinkable."
+The original credits name Gavin Rummery as lead programmer; Andrew Howe and Jason Gosling as programmers; Stewart Atkinson and Joss Charmet as animators; Neal Boyd and Heather Gibson as level designers; Nathan McCree for music and sound effects; Vicky Arnold for the script; Troy Horton as producer; and Jeremy H. Smith as executive producer. The FMV sequences were credited to Peter Barnard and David Reading, with Peter Duncan, Richard Morton, Lee Pullen, Andy Sandham, and Christian Russel providing additional artwork.
 
-The transition from the first game to the second was not clean. Toby Gard — who had designed Lara Croft, conceived the original game, and built its movement system — left Core Design before production was complete, citing creative disagreements with Eidos surrounding Lara's portrayal and the decision to sequel rather than attempt something new. Designer Paul Douglas left with him. Programmer Gavin Rummery, who had been working with Gard and Douglas on a separate original title, disagreed with their attitude toward the studio's leadership and rejoined the Tomb Raider team as they departed. He later described the production of Tomb Raider II as "insane."
+Core Design extended its existing engine rather than replacing it. A 1997 team interview describes refined controls and camera behavior, the animated ponytail, flares, gun flashes, transparencies, and dynamic lighting as visible improvements. The team said the PC version's major advantage was high resolution, while PlayStation offered transparency and other visual effects.
 
-The core team that remained — Rummery, Heather Gibson, Neal Boyd as co-designer, Troy Horton as producer, writer Vicky Arnold, and composer Nathan McCree — was supplemented by new hires brought in to meet the schedule. Stewart Atkinson and Jocelyn Charmet joined as animators. Atkinson rebuilt Lara's character model: the polygon count was roughly doubled, more realistic curves were added to her design, and her ponytail — present in some early builds of the first game but cut for technical reasons — was finally implemented through a fix developed specifically for the sequel. Atkinson has also been credited with proposing the addition of vehicles.
+Vehicles required levels to be planned around new movement systems. Heather Gibson later recalled that the schedule was so tight that the designers sometimes began constructing spaces before a vehicle was in final form. She and Neal Boyd built, textured, and lit the environments, while the wider team discussed locations, puzzles, traps, enemy triggers, and sound.
 
-The engine was not rebuilt but substantially extended. Vehicles required entirely new movement logic. Levels were designed around a greater variety of outdoor environments, including snow, water surfaces visible from above, and fire. A new level editor tool was built to accelerate construction and simplify bug detection. The in-game camera was adjusted to correct angles that had caused problems in the original. Greater combat emphasis — Gard had been reluctant to populate the first game with human enemies — was introduced partly in response to player complaints about limited confrontation.
+Development evidence must be separated from the retail game. Preserved builds contain placeholder level names, a possible rocket launcher, save-crystal strings, an unused Croft Manor FMV, and a structure in which Floating Islands and The Dragon's Lair may once have been a single level. These are production-history records, not features of the shipped edition.
 
-Several planned features did not survive to release. Crawling through narrow spaces, swinging on ropes, and a hand-over-hand gymnastics move were designed but cut. Vehicle sections on a motorbike and on a horse were drafted and removed. The grenade launcher, which had been designed for the original Tomb Raider but was not finished in time, finally appeared in this game. The corner bug from the first game was intentionally left in, with designer Neal Boyd placing a health item in a location only reachable by exploiting it.
+The English voice cast credits Judith Gibbins as Lara Croft, Simon Greenall as Marco Bartoli, Massimo Marinoni as Chan Barkhang, Fabio, and Claudio, and Nathan McCree as Winston. Vicky Arnold wrote the script, while an official retrospective credits Heather Gibson — later Heather Stevens — with work on 11 Tomb Raider II levels, three of them co-designed.
 
-The epilogue at Croft Manor was added late in production. The team felt the dragon battle, as originally scripted, was an anticlimactic ending. Due to time constraints, the epilogue was set in the existing Croft Manor training level. Winston the Butler — coded as "violent" but incapable of attacking — followed Lara around the manor as an intended comic presence. His appearance in the epilogue was cut for time. His presence in the training level, where players discovered they could lure him into the walk-in freezer and lock him inside, became one of the most enduring jokes in the series.
-
-The final shower scene was a deliberate response to the "Nude Raider" fan patch that had circulated after the original game. A separate hidden code in Tomb Raider II was programmed to destroy Lara rather than perform the function its rumored documentation claimed.
-
-Nathan McCree returned to score the game and was given considerably more time than he had been allotted for the original. He used it: the Tomb Raider II soundtrack is more than twice the length of its predecessor's. His score for the Venice levels was written as a deliberate Baroque pastiche — structured like Vivaldi or Bach, with particular attention to making synthetic violin samples sound convincing. McCree later described the experience of working without a confirmed audio budget as stressful; he and sound designer Matt Kemp were cutting and rearranging up until the final deadline.
-
-Lara's voice changed between games. Shelley Blond, who had voiced the character in the original, was offered the opportunity to return but had prior commitments. Judith Gibbins, recommended to audition by her brother who worked at Core Design, became the new voice of Lara Croft. Her involvement was kept confidential as part of Eidos's promotional strategy of presenting Lara as a real figure rather than a game character. Voice recording took place in London and required months of sessions due to frequent script revisions.
-
-A Sega Saturn version was planned and cancelled. Core Design had anticipated using the Saturn's 3D accelerator expansion cartridge; when that cartridge was itself cancelled, the Saturn conversion became infeasible. In September 1997, Eidos signed a console exclusivity deal with Sony, committing Tomb Raider to PlayStation until the year 2000.
-
-The launch event was held at the Natural History Museum in London, hosted by Jonathan Ross, in Hintze Hall beneath the Diplodocus cast Dippy. Marketing included cross-promotions with MTV and Pepsi. For live appearances at gaming events, Lara was portrayed by actress Rhona Mitra as part of Eidos's strategy of maintaining Lara as a physical public presence.
+In September 1997, Sony and Eidos announced console exclusivity for the franchise. Tomb Raider II therefore shipped on PlayStation and Windows, not Sega Saturn. The official launch press release followed on November 24 and emphasized the animated ponytail, new outfits, breakable glass, human enemies, and dynamic lighting.
 
 ## Legacy
 
-Tomb Raider II's commercial success accelerated the pressure that would eventually break the Core Design team. Eidos committed the studio to annual releases. The developers wanted two years to properly evolve the series; they were not given them. Tomb Raider III shipped in 1998, largely developed by newer hires. Work on Tomb Raider: The Last Revelation began in parallel — intended by some team members as a deliberate endpoint for the character, a means of killing Lara to end an unsustainable workload.
+Tomb Raider II turned the original formula into a larger globe-spanning adventure and established several long-running series images: Lara in a bomber jacket, vehicles, the expanded manor, Winston, Venice, and the dragon transformation. A 2009 Square Enix corporate chart places sales close to seven million units. The frequently reported 6.8 million figure is credible as a rounded historical total, but the surviving chart should not be treated as a precise final audit.
 
-An expansion pack called The Further Adventures of Lara Croft was in development in late 1997, featuring seven levels set in India. It was cancelled. Elements carried over into Tomb Raider III. A separate expansion, The Golden Mask, was released for Windows and Mac in 1999: four levels set in Alaska, originally offered as a free download before being packaged with a reissue of the main game. Its levels were built with existing technology and had no narrative connection to the main game.
+The PC and Macintosh expansion Tomb Raider II Gold: The Golden Mask arrived later. It contains four main levels and a fifth playable bonus level, Nightmare in Vegas, unlocked by collecting all twelve expansion secrets. It is related to Tomb Raider II but is not part of the original 18-level campaign.
 
-Winston the butler's accidental freezer imprisonment became one of the franchise's most persistent pieces of folk memory. It was referenced explicitly in Rise of the Tomb Raider, where a document describes a younger Lara locking him in the freezer as an act of rebellion. In the 2024 remaster, trapping Winston earns the player an achievement and animates him as a frozen block of ice.
+Tomb Raider III followed in 1998. In 2024, Tomb Raider I-III Remastered included Tomb Raider II and The Golden Mask, adding modern controls and updated graphics while retaining the classic geometry and offering the original visual style.
 
-Tomb Raider II and The Golden Mask were included in Tomb Raider I–III Remastered, released February 14, 2024, developed by Aspyr in partnership with Crystal Dynamics. The remaster added new control schemes and revamped graphics while preserving the original level geometry and gameplay logic.
+Winston's freezer became one of the series' best-known player-created jokes. Trapping him is possible, but Heather Gibson confirmed that she had not designed a special freezer gag and had not expected players to do it. That distinction — possible in the game, unintended by the designer — is preserved rather than simplifying the story into either “fake” or “planned.”
 
-During the period surrounding the game's release, Lara Croft reached the peak of her cultural ubiquity: she appeared on U2's PopMart Tour in 1997 as a projected visual during performances. Paramount Pictures acquired the film rights in 1998. The adaptation was released in 2001 with Angelina Jolie in the title role.
+## Fact Check
 
-In 2017, a fan project called Tomb Raider: The Dagger of Xian rebuilt the game's opening Great Wall level in Unreal Engine and released it as a free demo. It is one of the most technically accomplished fan recreations of a Core Design environment.
+The structured fact cards separate confirmed retail content from conflicting dates, draft-only features, myths, and qualified attributions. In particular: November 24 is the official canonical date while November 21 remains documented; the retail game has no rocket launcher or save crystals; The Golden Mask has five playable levels when its unlockable bonus is counted; and Winston's freezer imprisonment was possible but not a planned scripted joke.
 
 ## Trivia
 
-- Tomb Raider II was developed in approximately six to nine months — one of the shortest production windows for a major 3D action-adventure game of its era.
-- Toby Gard, who designed Lara Croft and the original game, left Core Design before Tomb Raider II was complete and had no involvement in its production.
-- Lara's ponytail, cut from the original game due to technical limitations, was implemented in Tomb Raider II through a fix developed specifically for the sequel.
-- The vehicles — speedboat in Venice, snowmobile in Tibet — were suggested by animator Stewart Atkinson and required entirely new movement logic for the engine.
-- The grenade launcher appeared in Tomb Raider II having originally been designed for the first game but cut before release.
-- The epilogue at Croft Manor was a last-minute addition; the team felt the dragon battle alone was anticlimactic as a final scene.
-- Lara's shower scene at the end was Core Design's deliberate response to the "Nude Raider" fan patch for the original game.
-- Winston the Butler could be led into the walk-in freezer and locked inside — a glitch-turned-tradition that was not a conscious design choice.
-- Judith Gibbins replaced Shelley Blond as the voice of Lara Croft; her involvement was kept confidential as part of Eidos's marketing strategy.
-- Nathan McCree's score for the Venice levels was composed as a Baroque pastiche, deliberately evoking Vivaldi and Bach.
-- The Sega Saturn version was cancelled after the 3D accelerator cartridge it depended on was itself cancelled by Sega.
-- The Barkhang Monastery levels include allied monk NPCs who fight alongside Lara — one of the earliest examples of friendly AI combatants in the series.
-- The corner bug from the original game was preserved intentionally; designer Neal Boyd placed a health item accessible only by exploiting it.
-- Electronic Gaming Monthly named Tomb Raider II its Adventure Game of the Year for 1997.
-- The game has sold 6.8 million copies worldwide as of 2009, making it the second overall best-selling PlayStation title in the United Kingdom.
+- The title screen and credits use Tomb Raider II Starring Lara Croft, while Tomb Raider II is the standard short title.
+- Lara's animated ponytail appears during gameplay for the first time in the series.
+- The motorboat and snowmobile are the series' first released player-controlled vehicles.
+- The retail game contains seven weapons; the rocket launcher belongs to development evidence, not the shipped arsenal.
+- The 48 secrets are distributed evenly as three dragon statuettes in each of the first 16 campaign levels.
+- Collecting all three secrets in a level grants supplies, but collecting all 48 does not unlock a base-game level.
+- Barkhang monks are allies unless Lara attacks them.
+- Marco Bartoli revives in dragon form if Lara does not remove the Dagger after stunning him.
+- Winston can be shut in the freezer, but the designer did not anticipate the player behavior.
+- The Golden Mask consists of four main levels plus the unlockable Nightmare in Vegas.
+- Judith Gibbins voiced Lara in English; Nathan McCree composed the music and also voiced Winston.
+- The original Windows and PlayStation versions differ visually: contemporary developers highlighted PC resolution and PlayStation transparency effects.
